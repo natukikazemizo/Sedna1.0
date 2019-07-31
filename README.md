@@ -2,6 +2,13 @@
 ## beta-version Cartoon-Like-3DCG development envilonment
 ## β版 カートゥーン風動画 開発環境  
 
+## Blender2.8対応
+* 2019/07/31から2019/10/31まで，Blender2.79からBlender2.8への移行作業を実施予定です。
+* 2019/07/31から2019/10/31までの移行期間は，  
+　Blender2.79で動作するファイルとBlender2.8で動作するファイルが混在することになります。  
+  ご了承ください。
+* 2019/11/01 以降は，Blender2.8x用のファイルを公開していく予定です。ご了承ください。
+
 ## 必要環境
 * Blender Version 2.79 が動作する環境
 
