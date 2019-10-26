@@ -10,12 +10,13 @@
 * 2019/11/01 以降は，Blender2.8x用のファイルを公開していく予定です。ご了承ください。
 
 ## 必要環境
-* Blender Version 2.79 が動作する環境
+* Blender Version 2.8 が動作する環境
 
 ## 開発環境  
-* Blender Version 2.79
+* Blender Version 2.8
 * CPU:Intel Core i5 64bit
 * MEMORY:16 GB
+* グラフィックボード Intel(R) HD Graphics 4000
 
 ## 推奨ソフトウェア
 * GIMP
