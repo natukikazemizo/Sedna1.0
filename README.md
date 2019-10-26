@@ -16,6 +16,7 @@
 * Blender Version 2.8
 * CPU:Intel Core i5 64bit
 * MEMORY:16 GB
+* グラフィックボード Intel(R) HD Graphics 4000
 
 ## 推奨ソフトウェア
 * GIMP
