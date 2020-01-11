@@ -4,16 +4,16 @@
 
 ## Blender2.8対応
 * 2019/08/01 以降は，Blender2.8x用のファイルを公開しております。ご了承ください。
-* Render　Cyclesを使用しています。私の環境では，Eveeを使用すると，頻繁にBlender2.8が落ちてしまいます。
+* 2020/01/09 以降は順次Cycles RenderをEeveeに変更していく予定です。
 
 ## 必要環境
-* Blender Version 2.8 が動作する環境
+* Blender Version 2.81a が動作する環境
 
 ## 開発環境  
-* Blender Version 2.8
-* CPU:Intel Core i5 64bit
-* MEMORY:16 GB
-* グラフィックボード Intel(R) HD Graphics 4000
+* Blender Version 2.81a
+* CPU:Intel(R) Core(TM)i9-9900K CPU @ 3.60GHz
+* MEMORY:64 GB
+* グラフィックボード GALAX GEFORCE GTX 1660
 
 ## 推奨ソフトウェア
 * GIMP
