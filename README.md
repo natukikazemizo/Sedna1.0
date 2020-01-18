@@ -11,6 +11,7 @@
 
 ## 開発環境  
 * Blender 2.81a
+* OS:Windows10
 * CPU:Intel(R) Core(TM)i9-9900K CPU @ 3.60GHz
 * MEMORY:64 GB
 * グラフィックボード GALAX GEFORCE GTX 1660
