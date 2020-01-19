@@ -11,6 +11,7 @@
 
 ## 開発環境  
 * Blender 2.81a
+* OS:Windows10
 * CPU:Intel(R) Core(TM)i9-9900K CPU @ 3.60GHz
 * MEMORY:64 GB
 * グラフィックボード GALAX GEFORCE GTX 1660
@@ -58,9 +59,9 @@ This software is released under the MIT License, see License.txt.
 このソフトウェアは、MITライセンスのもとで公開されています。License.txtを見てください。
 ### ※ フォントファイル等の同梱ファイル/ソフトについては，それぞれのライセンスに従ってください。
 
-### ※ Blender2.8には未対応です。  
-本プロジェクトの.blendファイルをBlender2.8で開くことは可能ですが，  
-Blender2.8で一度保存した後にBlender2.8でも2.79でもファイルを開けなくなる現象があります。
+### アニメ用への特化について
+公開しているファイルはアニメ用に特化しています。
+ゲームへの組み込みや3Dプリンタでの出力に対する考慮していませんので，ご了承ください。
 
 ## 管理情報
 ### スプレッドシート
