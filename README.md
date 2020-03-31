@@ -4,13 +4,13 @@
 
 ## Blender2.8対応
 * 2019/08/01 以降は，Blender2.8x用のファイルを公開しております。ご了承ください。
-* 2020/01/09 以降は順次Cycles RenderをEeveeに変更していく予定です。
+* 2020/01/09 以降は順次Cycles RenderをEeveeに変更しています。
 
 ## 必要環境
-* Blender 2.81a が動作する環境
+* Blender 2.82a が動作する環境
 
 ## 開発環境  
-* Blender 2.81a
+* Blender 2.82a
 * OS:Windows10
 * CPU:Intel(R) Core(TM)i9-9900K CPU @ 3.60GHz
 * MEMORY:64 GB
