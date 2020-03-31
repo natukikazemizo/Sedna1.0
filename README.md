@@ -7,10 +7,10 @@
 * 2020/01/09 以降は順次Cycles RenderをEeveeに変更しています。
 
 ## 必要環境
-* Blender 2.82 が動作する環境
+* Blender 2.82a が動作する環境
 
 ## 開発環境  
-* Blender 2.82
+* Blender 2.82a
 * OS:Windows10
 * CPU:Intel(R) Core(TM)i9-9900K CPU @ 3.60GHz
 * MEMORY:64 GB
