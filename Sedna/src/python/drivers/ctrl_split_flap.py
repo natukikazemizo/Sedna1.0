@@ -5,6 +5,8 @@
 # Calculate Split-flap display 's flaps angle
 # 2020.09.03 N(Natukikazemizo)
 
+import bpy
+
 # period:period of Split-flap display (Seconds)
 # pos:position of flip(0 start)
 def ctrl_split_flap(x, num_of_flip, period, pos):
