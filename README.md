@@ -1,13 +1,8 @@
 # Sedna 1.0 セドナ 1.0
-## beta-version Cartoon-Like-3DCG development envilonment
-## β版 カートゥーン風動画 開発環境  
-
-## Blender2.8対応
-* 2019/08/01 以降は，Blender2.8x用のファイルを公開しております。ご了承ください。
-* 2020/01/09 以降は順次Cycles RenderをEeveeに変更しています。
+## Blenderを使用した自主制作アニメ用のスクリプトとアドオン置き場です。
 
 ## 必要環境
-* Blender 2.9 が動作する環境
+* Blender 2.90 が動作する環境
 
 ## 開発環境  
 * Blender 2.9
@@ -16,20 +11,11 @@
 * MEMORY:64 GB
 * グラフィックボード GALAX GEFORCE GTX 1660
 
-## 推奨ソフトウェア
-* GIMP
-  gimpFiles フォルダ配下の.xcfファイルが扱えるようになります。
-
-## レンダリング時間
-1フレーム当たり，10秒程度です。
-シーンの複雑さによってレンダリング時間は増減します。
-
-
-## インストール 
-  必要な手順はありません。
+## インストール 方法
+　未作成
 
 ## アンインストール         
-必要な手順はありません。
+　未作成
 
 ## 本プロジェクトで作成したアニメーション（自主制作アニメーション）：
 ## 自主制作アニメーション：
@@ -45,14 +31,6 @@
 [ニコニコ動画版](http://www.nicovideo.jp/watch/sm31660526)  
 [youtube版](https://youtu.be/j0UhxwEl4is)  
 [上記の動画ファイルに対応した.blendファイルはこちら](https://bowlroll.net/file/134556)
-
-
-## 特記事項  
-### GitHub上に.blendファイルが含まれている事について  
-公開しているソースコードに.blendファイルが密結合であるため，公開ファイルに.blendファイルを含めています。  
-### .blendファイルに対して予定している施策
-* .blendファイルのサイズをできるだけ小さくする
-* .blendファイルからMesh等のデータをエクスポート/インポートするアドオンの開発
 
 ## License ライセンス
 This software is released under the MIT License, see License.txt.  
@@ -72,4 +50,3 @@ This software is released under the MIT License, see License.txt.
 
 ## その他詳細情報
 [こちらのwikiを参照してください](../../wiki/Home)
-
