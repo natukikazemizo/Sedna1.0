@@ -13,9 +13,22 @@ objectNames = [
  , 'Armature.Blanket'
  , 'Armature.Clock'
  , 'Armature.Andon'
- , 'hoge'
+ , 'Armature.N'
+ , 'EyeBalls.Lens'
+ , 'Armature.DDE'
+ , 'Armature.Motion'
+ , 'Armature.Arms.001'
+ , 'Armature.Arms.002'
+ , ''
+ , ''
+ , ''
+ , ''
 ]
 
 for name in objectNames:
-    if name 
-    bpy.data.objects[name].hide_viewport = True
+    if name in bpy.data.objects:
+        obj = bpy.data.objects[name]
+        # print(obj.type)
+        obj.hide_set(True)
+
+bpy.data.collections['SubArmature'].hide_viewport = True
