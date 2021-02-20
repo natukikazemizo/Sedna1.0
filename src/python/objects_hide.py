@@ -25,10 +25,12 @@ objectNames = [
  , ''
 ]
 
+# hide objects
 for name in objectNames:
-    if name in bpy.data.objects:
-        obj = bpy.data.objects[name]
+    if name in bpy.context.scene.view_layers[0].objects:
+        obj = bpy.context.scene.view_layers[0].objects[name]
         # print(obj.type)
         obj.hide_set(True)
 
+# hide Collections
 bpy.data.collections['SubArmature'].hide_viewport = True
