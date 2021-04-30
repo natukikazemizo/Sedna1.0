@@ -19,6 +19,10 @@
 
 ## 本プロジェクトで作成したアニメーション（自主制作アニメーション）：
 ## 自主制作アニメーション：
+### ドロシーの開発環境#0030 「恋人っぽく」
+[ニコニコ動画版](https://www.nicovideo.jp/watch/sm38663015)  
+[youtube版](https://youtu.be/D-_wl9iZHAA)  
+
 ### ドロシーの開発環境#0030 「フォルダツリー」
 [ニコニコ動画版](https://nico.ms/sm35034116)  
 [youtube版](https://youtu.be/L97rfQ7MrJU)  
