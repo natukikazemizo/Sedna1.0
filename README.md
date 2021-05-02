@@ -22,6 +22,7 @@
 ### ドロシーの開発環境#0040 「恋人っぽく」
 [ニコニコ動画版](https://www.nicovideo.jp/watch/sm38663015)  
 [youtube版](https://youtu.be/D-_wl9iZHAA)  
+[.blendファイル](https://bowlroll.net/file/253079)  
 
 ### ドロシーの開発環境#0030 「フォルダツリー」
 [ニコニコ動画版](https://nico.ms/sm35034116)  
