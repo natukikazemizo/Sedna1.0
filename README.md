@@ -1,11 +1,11 @@
 # Sedna 1.0 セドナ 1.0
-## Blenderを使用した自主制作アニメ用のスクリプトとアドオン置き場です。
+## Blenderを使用した自主制作アニメ用のスクリプトとアドオン
 
 ## 必要環境
-* Blender 2.90 が動作する環境
+* Blender 2.92 が動作する環境
 
 ## 開発環境  
-* Blender 2.9
+* Blender 2.92
 * OS:Windows10
 * CPU:Intel(R) Core(TM)i9-9900K CPU @ 3.60GHz
 * MEMORY:64 GB
@@ -19,6 +19,11 @@
 
 ## 本プロジェクトで作成したアニメーション（自主制作アニメーション）：
 ## 自主制作アニメーション：
+### ドロシーの開発環境#0040 「恋人っぽく」
+[ニコニコ動画版](https://www.nicovideo.jp/watch/sm38663015)  
+[youtube版](https://youtu.be/D-_wl9iZHAA)  
+[.blendファイル](https://bowlroll.net/file/253079)  
+
 ### ドロシーの開発環境#0030 「フォルダツリー」
 [ニコニコ動画版](https://nico.ms/sm35034116)  
 [youtube版](https://youtu.be/L97rfQ7MrJU)  
