@@ -46,7 +46,7 @@ This software is released under the MIT License, see License.txt.
 公開しているファイルはCartoon的表現に特化しています。
 * モーションキャプチャーできないポーズ
 * 3DプリントアウトできないMesh
-* パースの無いカメラを使用
+* パースの無いカメラを使用  
 等しているので，ご了承ください。
 
 ## 管理情報
