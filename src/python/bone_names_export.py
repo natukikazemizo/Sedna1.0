@@ -2,7 +2,7 @@
 # -*- coding: UTF-8 -*-
 # Read All Bone Names
 #
-# 2017.09.10 Natukikazemizoo
+# 2017.09.10 Natukikazemizo
 
 import bpy
 import os
