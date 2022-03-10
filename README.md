@@ -6,7 +6,7 @@
 
 ## 開発環境  
 * Blender 3.1.0
-* OS:Windows10
+* OS:Windows11
 * CPU:Intel(R) Core(TM)i9-9900K CPU @ 3.60GHz
 * MEMORY:64 GB
 * グラフィックボード GALAX GEFORCE GTX 1660
