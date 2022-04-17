@@ -1,6 +1,6 @@
 #!BPY
 # -*- coding: UTF-8 -*-
-# Move or Resize Object
+# Add Location/Rotation/Scale KeyFrames
 # For DDE#0040
 #
 # 2022.04.17 Natukikazemizoo
@@ -21,6 +21,7 @@ F_CURVE_Y_SCALE = 7
 F_CURVE_Z_SCALE = 8
 
 ACTION_GROUP_NAME = "Object Transforms"
+
 
 def main():
     target = bpy.data.objects[TARGET_OBJECT_NAME]
@@ -55,13 +56,11 @@ def main():
 
     add_location_key_frame(action.fcurves, 10, 0, 0, 0)
     add_location_key_frame(action.fcurves, 12, 0.2, 0.3, 0.1)
-
     add_rotation_key_frame(action.fcurves, 10, 0, 0, 0)
     add_rotation_key_frame(action.fcurves, 12, math.pi / 6, 0, 0)
     add_scale_key_frame(action.fcurves, 10, 1, 1, 1)
     add_scale_key_frame(action.fcurves, 12, 3, 4, 5)
 
-    print("END")
 
 
 def clear_old_breakpoints(fcurve):
@@ -77,6 +76,7 @@ def clear_old_breakpoints(fcurve):
             fcurve.keyframe_points.remove(fcurve.keyframe_points[i])
         fcurve.update()
 
+
 def clear_all_old_breakpoints(fcurves):
     clear_old_breakpoints(fcurves[F_CURVE_X_LOCATION])
     clear_old_breakpoints(fcurves[F_CURVE_Y_LOCATION])
@@ -88,20 +88,24 @@ def clear_all_old_breakpoints(fcurves):
     clear_old_breakpoints(fcurves[F_CURVE_X_SCALE])
     clear_old_breakpoints(fcurves[F_CURVE_X_SCALE])
 
+
 def add_location_key_frame(fcurves, frame, x, y, z):
     add_keyframe_point(fcurves[F_CURVE_X_LOCATION], frame, x)
     add_keyframe_point(fcurves[F_CURVE_Y_LOCATION], frame, y)
     add_keyframe_point(fcurves[F_CURVE_Z_LOCATION], frame, z)
+
 
 def add_rotation_key_frame(fcurves, frame, x, y, z):
     add_keyframe_point(fcurves[F_CURVE_X_ROTATION], frame, x)
     add_keyframe_point(fcurves[F_CURVE_Y_ROTATION], frame, y)
     add_keyframe_point(fcurves[F_CURVE_Z_ROTATION], frame, z)
 
+
 def add_scale_key_frame(fcurves, frame, x, y, z):
     add_keyframe_point(fcurves[F_CURVE_X_SCALE], frame, x)
     add_keyframe_point(fcurves[F_CURVE_Y_SCALE], frame, y)
     add_keyframe_point(fcurves[F_CURVE_Z_SCALE], frame, z)
+
 
 def add_keyframe_point(fcurve, frame, value):
 
