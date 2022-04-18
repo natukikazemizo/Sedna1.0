@@ -15,7 +15,7 @@ bl_info = {
     "name" : "debug",
     "author" : "Natukikazemizo",
     "description" : "",
-    "blender" : (2, 80, 0),
+    "blender" : (3, 1, 0),
     "version" : (0, 0, 1),
     "location" : "",
     "warning" : "",

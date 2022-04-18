@@ -1,3 +1,4 @@
+# context.area: CONSOLE
 #!BPY
 # -*- coding: UTF-8 -*-
 # Add Location/Rotation/Scale KeyFrames
@@ -21,46 +22,6 @@ F_CURVE_Y_SCALE = 7
 F_CURVE_Z_SCALE = 8
 
 ACTION_GROUP_NAME = "Object Transforms"
-
-
-def main():
-    target = bpy.data.objects[TARGET_OBJECT_NAME]
-    frame_current =  bpy.context.scene.frame_current
-
-    action = bpy.data.actions.get(ACTION_NAME)
-    if action is None:
-        action =bpy.data.actions.new(ACTION_NAME)
-        # Set user_fame_user to keep action data
-        action.use_fake_user = True
-
-    if target.animation_data is None:
-        target.animation_data_create()
-    
-    if action.groups.find(ACTION_GROUP_NAME) is None: 
-        bpy.context.object.animation_data.action.groups.new(ACTION_GROUP_NAME)
-    
-    target.animation_data.action = action
-
-    if action.fcurves is None or len(action.fcurves) == 0:
-        action.fcurves.new('location', action_group=ACTION_GROUP_NAME)
-        action.fcurves.new('location', index=1, action_group=ACTION_GROUP_NAME)
-        action.fcurves.new('location', index=2, action_group=ACTION_GROUP_NAME)
-        action.fcurves.new('rotation_euler', action_group=ACTION_GROUP_NAME)
-        action.fcurves.new('rotation_euler', index=1, action_group=ACTION_GROUP_NAME)
-        action.fcurves.new('rotation_euler', index=2, action_group=ACTION_GROUP_NAME)    
-        action.fcurves.new('scale', action_group=ACTION_GROUP_NAME)
-        action.fcurves.new('scale', index=1, action_group=ACTION_GROUP_NAME)
-        action.fcurves.new('scale', index=2, action_group=ACTION_GROUP_NAME)
-
-    clear_all_old_breakpoints(action.fcurves)
-
-    add_location_key_frame(action.fcurves, 10, 0, 0, 0)
-    add_location_key_frame(action.fcurves, 12, 0.2, 0.3, 0.1)
-    add_rotation_key_frame(action.fcurves, 10, 0, 0, 0)
-    add_rotation_key_frame(action.fcurves, 12, math.pi / 6, 0, 0)
-    add_scale_key_frame(action.fcurves, 10, 1, 1, 1)
-    add_scale_key_frame(action.fcurves, 12, 3, 4, 5)
-
 
 
 def clear_old_breakpoints(fcurve):
@@ -129,5 +90,43 @@ def add_keyframe_point(fcurve, frame, value):
     fcurve.keyframe_points[index].handle_left = frame - 0.5, value
     fcurve.keyframe_points[index].handle_right = frame + 0.5, value
 
-if __name__ == "__main__":
-    main()
+###############################################################
+# main
+###############################################################
+target = bpy.data.objects[TARGET_OBJECT_NAME]
+frame_current =  bpy.context.scene.frame_current
+
+action = bpy.data.actions.get(ACTION_NAME)
+if action is None:
+    action =bpy.data.actions.new(ACTION_NAME)
+    # Set user_fame_user to keep action data
+    action.use_fake_user = True
+
+if target.animation_data is None:
+    target.animation_data_create()
+
+if action.groups.find(ACTION_GROUP_NAME) is None: 
+    bpy.context.object.animation_data.action.groups.new(ACTION_GROUP_NAME)
+
+target.animation_data.action = action
+
+if action.fcurves is None or len(action.fcurves) == 0:
+    action.fcurves.new('location', action_group=ACTION_GROUP_NAME)
+    action.fcurves.new('location', index=1, action_group=ACTION_GROUP_NAME)
+    action.fcurves.new('location', index=2, action_group=ACTION_GROUP_NAME)
+    action.fcurves.new('rotation_euler', action_group=ACTION_GROUP_NAME)
+    action.fcurves.new('rotation_euler', index=1, action_group=ACTION_GROUP_NAME)
+    action.fcurves.new('rotation_euler', index=2, action_group=ACTION_GROUP_NAME)    
+    action.fcurves.new('scale', action_group=ACTION_GROUP_NAME)
+    action.fcurves.new('scale', index=1, action_group=ACTION_GROUP_NAME)
+    action.fcurves.new('scale', index=2, action_group=ACTION_GROUP_NAME)
+
+clear_all_old_breakpoints(action.fcurves)
+
+add_location_key_frame(action.fcurves, 10, 0, 0, 0)
+add_location_key_frame(action.fcurves, 12, 0.2, 0.3, 0.1)
+add_rotation_key_frame(action.fcurves, 10, 0, 0, 0)
+add_rotation_key_frame(action.fcurves, 12, math.pi / 6, 0, 0)
+add_scale_key_frame(action.fcurves, 10, 1, 1, 1)
+add_scale_key_frame(action.fcurves, 12, 3, 4, 5)
+
