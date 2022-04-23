@@ -11,15 +11,6 @@ import math
 
 TARGET_OBJECT_NAME = "SpoolTank_T"
 ACTION_NAME = "SpoolTank_Action"
-F_CURVE_X_LOCATION = 0
-F_CURVE_Y_LOCATION = 1
-F_CURVE_Z_LOCATION = 2
-F_CURVE_X_ROTATION = 3
-F_CURVE_Y_ROTATION = 4
-F_CURVE_Z_ROTATION = 5
-F_CURVE_X_SCALE = 6
-F_CURVE_Y_SCALE = 7
-F_CURVE_Z_SCALE = 8
 
 ACTION_GROUP_NAME = "Object Transforms"
 
@@ -31,7 +22,7 @@ def clear_old_breakpoints(fcurve):
         if point.co[0] != 0:
             old_keyframe_index_list.append(i)
 
-    if len(old_keyframe_index_list) > 0:
+    if not old_keyframe_index_list:
         old_keyframe_index_list.reverse()
         for i in old_keyframe_index_list:
             fcurve.keyframe_points.remove(fcurve.keyframe_points[i])
@@ -39,34 +30,43 @@ def clear_old_breakpoints(fcurve):
 
 
 def clear_all_old_breakpoints(fcurves):
-    clear_old_breakpoints(fcurves[F_CURVE_X_LOCATION])
-    clear_old_breakpoints(fcurves[F_CURVE_Y_LOCATION])
-    clear_old_breakpoints(fcurves[F_CURVE_Z_LOCATION])
-    clear_old_breakpoints(fcurves[F_CURVE_X_ROTATION])
-    clear_old_breakpoints(fcurves[F_CURVE_Y_ROTATION])
-    clear_old_breakpoints(fcurves[F_CURVE_Z_ROTATION])
-    clear_old_breakpoints(fcurves[F_CURVE_X_SCALE])
-    clear_old_breakpoints(fcurves[F_CURVE_X_SCALE])
-    clear_old_breakpoints(fcurves[F_CURVE_X_SCALE])
+    for fcurve in fcurves:
+        if fcurve.data_path == 'location' or fcurve.data_path == 'rotation_euler' or fcurve.data_path == 'scale':
+            clear_old_breakpoints(fcurve)
+
+
+def add_xyz_key_frame(fcurve, frame, x, y, z):
+    if fcurve.array_index == 0:
+        add_keyframe_point(fcurve, frame, x)
+    elif fcurve.array_index == 1:
+        add_keyframe_point(fcurve, frame, y)
+    elif fcurve.array_index == 2:
+        add_keyframe_point(fcurve, frame, z)
 
 
 def add_location_key_frame(fcurves, frame, x, y, z):
-    add_keyframe_point(fcurves[F_CURVE_X_LOCATION], frame, x)
-    add_keyframe_point(fcurves[F_CURVE_Y_LOCATION], frame, y)
-    add_keyframe_point(fcurves[F_CURVE_Z_LOCATION], frame, z)
+    for fcurve in fcurves:
+        if  fcurve.data_path == 'location':
+            add_xyz_key_frame(fcurve, frame, x, y, z)
 
 
 def add_rotation_key_frame(fcurves, frame, x, y, z):
-    add_keyframe_point(fcurves[F_CURVE_X_ROTATION], frame, x)
-    add_keyframe_point(fcurves[F_CURVE_Y_ROTATION], frame, y)
-    add_keyframe_point(fcurves[F_CURVE_Z_ROTATION], frame, z)
+    for fcurve in fcurves:
+        if  fcurve.data_path == 'rotation_euler':
+            add_xyz_key_frame(fcurve, frame, x, y, z)
 
 
 def add_scale_key_frame(fcurves, frame, x, y, z):
-    add_keyframe_point(fcurves[F_CURVE_X_SCALE], frame, x)
-    add_keyframe_point(fcurves[F_CURVE_Y_SCALE], frame, y)
-    add_keyframe_point(fcurves[F_CURVE_Z_SCALE], frame, z)
+    for fcurve in fcurves:
+        if  fcurve.data_path == 'scale':
+            add_xyz_key_frame(fcurve, frame, x, y, z)
 
+
+def create_fcurves(action, data_path, action_group_name):
+    fcurves = [fcurve for fcurve in action.fcurves if fcurve.data_path == data_path]
+    if not fcurves:
+        for i in range(0, 3):
+            action.fcurves.new(data_path, index = i, action_group=action_group_name)  
 
 def add_keyframe_point(fcurve, frame, value):
 
@@ -110,23 +110,21 @@ if action.groups.find(ACTION_GROUP_NAME) is None:
 
 target.animation_data.action = action
 
-if action.fcurves is None or len(action.fcurves) == 0:
-    action.fcurves.new('location', action_group=ACTION_GROUP_NAME)
-    action.fcurves.new('location', index=1, action_group=ACTION_GROUP_NAME)
-    action.fcurves.new('location', index=2, action_group=ACTION_GROUP_NAME)
-    action.fcurves.new('rotation_euler', action_group=ACTION_GROUP_NAME)
-    action.fcurves.new('rotation_euler', index=1, action_group=ACTION_GROUP_NAME)
-    action.fcurves.new('rotation_euler', index=2, action_group=ACTION_GROUP_NAME)    
-    action.fcurves.new('scale', action_group=ACTION_GROUP_NAME)
-    action.fcurves.new('scale', index=1, action_group=ACTION_GROUP_NAME)
-    action.fcurves.new('scale', index=2, action_group=ACTION_GROUP_NAME)
+create_fcurves(action, 'location', ACTION_GROUP_NAME)
+create_fcurves(action, 'rotation_euler', ACTION_GROUP_NAME)
+create_fcurves(action, 'scale', ACTION_GROUP_NAME)
 
 clear_all_old_breakpoints(action.fcurves)
 
-add_location_key_frame(action.fcurves, 10, 0, 0, 0)
-add_location_key_frame(action.fcurves, 12, 0.2, 0.3, 0.1)
-add_rotation_key_frame(action.fcurves, 10, 0, 0, 0)
-add_rotation_key_frame(action.fcurves, 12, math.pi / 6, 0, 0)
-add_scale_key_frame(action.fcurves, 10, 1, 1, 1)
-add_scale_key_frame(action.fcurves, 12, 3, 4, 5)
+height = 0.012978
+scale = 3
+frame_start = 100
+frame_end = 140
+
+add_location_key_frame(action.fcurves, frame_start, 0, 0, height)
+add_location_key_frame(action.fcurves, frame_end, 0, 0, height * scale)
+add_rotation_key_frame(action.fcurves, frame_start, 0, 0, 0)
+add_rotation_key_frame(action.fcurves, frame_end, 0, math.pi, 0)
+add_scale_key_frame(action.fcurves, frame_start, 1, 1, 1)
+add_scale_key_frame(action.fcurves, frame_end, scale, scale, scale)
 
