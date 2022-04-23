@@ -35,31 +35,14 @@ def clear_all_old_breakpoints(fcurves):
             clear_old_breakpoints(fcurve)
 
 
-def add_xyz_key_frame(fcurve, frame, x, y, z):
-    if fcurve.array_index == 0:
-        add_keyframe_point(fcurve, frame, x)
-    elif fcurve.array_index == 1:
-        add_keyframe_point(fcurve, frame, y)
-    elif fcurve.array_index == 2:
-        add_keyframe_point(fcurve, frame, z)
-
-
-def add_location_key_frame(fcurves, frame, x, y, z):
+def add_xyz_key_frame(fcurves, frame, x, y, z):
     for fcurve in fcurves:
-        if  fcurve.data_path == 'location':
-            add_xyz_key_frame(fcurve, frame, x, y, z)
-
-
-def add_rotation_key_frame(fcurves, frame, x, y, z):
-    for fcurve in fcurves:
-        if  fcurve.data_path == 'rotation_euler':
-            add_xyz_key_frame(fcurve, frame, x, y, z)
-
-
-def add_scale_key_frame(fcurves, frame, x, y, z):
-    for fcurve in fcurves:
-        if  fcurve.data_path == 'scale':
-            add_xyz_key_frame(fcurve, frame, x, y, z)
+        if fcurve.array_index == 0:
+            add_keyframe_point(fcurve, frame, x)
+        elif fcurve.array_index == 1:
+            add_keyframe_point(fcurve, frame, y)
+        elif fcurve.array_index == 2:
+            add_keyframe_point(fcurve, frame, z)
 
 
 def create_fcurves(action, data_path, action_group_name):
@@ -121,10 +104,14 @@ scale = 3
 frame_start = 100
 frame_end = 140
 
-add_location_key_frame(action.fcurves, frame_start, 0, 0, height)
-add_location_key_frame(action.fcurves, frame_end, 0, 0, height * scale)
-add_rotation_key_frame(action.fcurves, frame_start, 0, 0, 0)
-add_rotation_key_frame(action.fcurves, frame_end, 0, math.pi, 0)
-add_scale_key_frame(action.fcurves, frame_start, 1, 1, 1)
-add_scale_key_frame(action.fcurves, frame_end, scale, scale, scale)
+location_fcurves = [fcurve for fcurve in action.fcurves if fcurve.data_path == 'location']
+rotation_fcurves = [fcurve for fcurve in action.fcurves if fcurve.data_path == 'rotation_euler']
+scale_fcurves = [fcurve for fcurve in action.fcurves if fcurve.data_path == 'scale']
+
+add_xyz_key_frame(location_fcurves, frame_start, 0, 0, height)
+add_xyz_key_frame(location_fcurves, frame_end, 0, 0, height * scale)
+add_xyz_key_frame(rotation_fcurves, frame_start, 0, 0, 0)
+add_xyz_key_frame(rotation_fcurves, frame_end, 0, math.pi, 0)
+add_xyz_key_frame(scale_fcurves, frame_start, 1, 1, 1)
+add_xyz_key_frame(scale_fcurves, frame_end, scale, scale, scale)
 
