@@ -17,6 +17,11 @@ ACTION_GROUP_NAME = "Object Transforms"
 ROTATION_PATH = "rotation_euler"
 KEYFRAME_TYPE = "BREAKDOWN"
 
+HEIGHT = 0.012978
+SCALE = 3
+FRAME_START = 100
+FRAME_END = 140
+
 
 def clear_old_breakpoints(fcurve):
     old_keyframe_index_list = []
@@ -100,15 +105,10 @@ create_fcurves(action, 'scale', ACTION_GROUP_NAME)
 
 clear_all_old_breakpoints(action.fcurves)
 
-height = 0.012978
-scale = 3
-frame_start = 100
-frame_end = 140
-
-add_xyz_key_frame(action.fcurves, 'location', frame_start, 0, 0, height)
-add_xyz_key_frame(action.fcurves, 'location', frame_end, 0, 0, height * scale)
-add_xyz_key_frame(action.fcurves, ROTATION_PATH, frame_start, 0, 0, 0)
-add_xyz_key_frame(action.fcurves, ROTATION_PATH, frame_end, 0, math.pi, 0)
-add_xyz_key_frame(action.fcurves, 'scale', frame_start, 1, 1, 1)
-add_xyz_key_frame(action.fcurves, 'scale', frame_end, scale, scale, scale)
+add_xyz_key_frame(action.fcurves, 'location', FRAME_START, 0, 0, HEIGHT)
+add_xyz_key_frame(action.fcurves, 'location', FRAME_END, 0, 0, HEIGHT * SCALE)
+add_xyz_key_frame(action.fcurves, ROTATION_PATH, FRAME_START, 0, 0, 0)
+add_xyz_key_frame(action.fcurves, ROTATION_PATH, FRAME_END, 0, 0, math.pi * 2)
+add_xyz_key_frame(action.fcurves, 'scale', FRAME_START, 1, 1, 1)
+add_xyz_key_frame(action.fcurves, 'scale', FRAME_END, SCALE, SCALE, SCALE)
 
