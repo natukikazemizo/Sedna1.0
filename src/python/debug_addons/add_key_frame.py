@@ -2,7 +2,7 @@
 #!BPY
 # -*- coding: UTF-8 -*-
 # Add Location/Rotation/Scale KeyFrames
-# For DDE#0040
+# For DDE#0050
 #
 # 2022.04.17 Natukikazemizoo
 
@@ -23,7 +23,15 @@ FRAME_START = 100
 FRAME_END = 140
 
 
-def clear_old_breakpoints(fcurve):
+def clear_old_keyframe_points(fcurve):
+    """
+    Delete existing keyframe_points from F-Curve.
+
+    Parameters
+    --------------
+    fcurve:bpy.types.FCurve(bpy_struct)
+        F-Curve to remove keyframe_points.
+    """
     old_keyframe_index_list = []
 
     for i, point in enumerate(fcurve.keyframe_points):
@@ -37,28 +45,78 @@ def clear_old_breakpoints(fcurve):
         fcurve.update()
 
 
-def clear_all_old_breakpoints(fcurves):
+def clear_all_old_keyframe_points(fcurves):
+    """
+    Delete existing keyframe_points from F-Curves.
+
+    Parameters
+    --------------
+    fcurves : bpy.types.FCurve(bpy_struct)[]
+        F-Curves to remove keyframe_points.
+    """
     for fcurve in fcurves:
         if fcurve.data_path == 'location' or fcurve.data_path == ROTATION_PATH \
             or fcurve.data_path == 'scale':
-            clear_old_breakpoints(fcurve)
+            clear_old_keyframe_points(fcurve)
 
 
 def add_xyz_key_frame(fcurves, data_path, frame, x, y, z):
+    """
+    Add key frame with convert x, y, z to index 0, 1, 2
+
+    Parameters
+    --------------
+    fcurves : bpy.types.FCurve(bpy_struct)[]
+        Add key frame target F-Curves.
+    data_path : stringv
+        RNA Path to property affected by F-Curve.
+    frame : float
+        Add key frame target frame
+    x : float
+        x coordinate value.
+    y : float
+        y coordinate value.
+    z : float
+        z coordinate value.
+    """
     add_keyframe_point(fcurves.find(data_path, index = 0), frame, x)
-    add_keyframe_point(fcurves.find(data_path, index = 1), frame, y)
-    add_keyframe_point(fcurves.find(data_path, index = 2), frame, z)
+    add_keyframe_point(fcurves.find(data_path, index = 1), frame, x)
+    add_keyframe_point(fcurves.find(data_path, index = 2), frame, x)
 
 
 def create_fcurves(action, data_path, action_group_name):
+    """
+        Create x, y, z fcurves
+
+    Parameters
+    --------------
+    action : bpy.ops.action
+        Create F-Curves target action.
+    data_path : string
+        RNA Path to property affected by F-Curve.
+    action_group_name : string
+        Action Group, Acton group to add this F-Curve into.
+    """
     for i in range(0, 3):
         fcurve = action.fcurves.find(data_path, index = i)
         if fcurve is None:
             action.fcurves.new(data_path, index = i, action_group=action_group_name)  
 
 
-def add_keyframe_point(fcurve, frame, value):
 
+def add_keyframe_point(fcurve, frame, value):
+    """
+    Add keyframe_point on F-Curve.
+
+    Parameters
+    --------------
+    fcurve : bpy.types.FCurve(bpy_struct)
+        F-Curve to add keyframe_point.
+    frame : float
+        Add key frame target frame.
+    value : value
+        Value to add to frame of F-Curve
+    """
     # find same frame keyframe_point
     index = 0
     find_frame = False
@@ -103,7 +161,7 @@ create_fcurves(action, 'location', ACTION_GROUP_NAME)
 create_fcurves(action, ROTATION_PATH, ACTION_GROUP_NAME)
 create_fcurves(action, 'scale', ACTION_GROUP_NAME)
 
-clear_all_old_breakpoints(action.fcurves)
+clear_all_old_keyframe_points(action.fcurves)
 
 add_xyz_key_frame(action.fcurves, 'location', FRAME_START, 0, 0, HEIGHT)
 add_xyz_key_frame(action.fcurves, 'location', FRAME_END, 0, 0, HEIGHT * SCALE)
@@ -111,4 +169,3 @@ add_xyz_key_frame(action.fcurves, ROTATION_PATH, FRAME_START, 0, 0, 0)
 add_xyz_key_frame(action.fcurves, ROTATION_PATH, FRAME_END, 0, 0, math.pi * 2)
 add_xyz_key_frame(action.fcurves, 'scale', FRAME_START, 1, 1, 1)
 add_xyz_key_frame(action.fcurves, 'scale', FRAME_END, SCALE, SCALE, SCALE)
-
