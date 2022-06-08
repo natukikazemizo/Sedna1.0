@@ -1,6 +1,3 @@
-# context.area: CONSOLE
-#!BPY
-# -*- coding: UTF-8 -*-
 # Add Location/Rotation/Scale KeyFrames
 # For DDE#0050
 #
