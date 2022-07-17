@@ -7,7 +7,6 @@
 import bpy
 import math
 
-
 ARMATURE_NAME = "Armature.SpoolTank"
 ACTION_NAME = "Armature.SpoolTank.Action"
 
@@ -202,4 +201,4 @@ add_bone_xyz_key_frame(action.fcurves, 'Stick_T', START_FRAME, 0, -0.01, 0)
 add_bone_xyz_key_frame(action.fcurves, 'Spool_Rot', START_FRAME, 0, 0, 0)
 
 add_bone_xyz_key_frame(action.fcurves, 'Pos', END_FRAME, 0.2, 0, 0)
-add_bone_xyz_key_frame(action.fcurves, 'Spool_Rot', END_FRAME, 0, 0.2 / (SPOOL_DIAMETER * 3.14) * LEN_PER_SPOOL_ROTATION, 0)
+add_bone_xyz_key_frame(action.fcurves, 'Spool_Rot', END_FRAME, 0, 0.2 / (SPOOL_DIAMETER * math.pi) * LEN_PER_SPOOL_ROTATION, 0)
