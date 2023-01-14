@@ -43,6 +43,9 @@ def clear_old_keyframe_points(fcurve):
             fcurve.keyframe_points.remove(fcurve.keyframe_points[i])
         fcurve.update()
 
+def comfort_ide():
+    if ide_depressed:
+
 
 def clear_all_old_keyframe_points(fcurves):
     """
