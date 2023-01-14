@@ -13,11 +13,11 @@ import math
 
 # CONSTANTS
 CURRENT_SCENE = "Root"
-TEST_MODE = True
+TEST_MODE = False
 ENABLE_RENDER = False
 test_print_cnt = 0
 TEST_PATH = "//..\..\..\..\\renderResults\\DDE#0050_Test\\Test_"
-RESULT_PATH = "//..\..\..\..\\renderResults\\DDE#0050\\DDE0050_"
+RESULT_PATH = "//..\..\..\..\\renderResults\\DDE#0050\\"
 FRAME_STEP = 1
 FPS = 24
 CAMERA = "Camera.Main"
@@ -41,10 +41,10 @@ def render(marker_name, frames, show_collections, hide_collections):
     bpy.context.scene.frame_start = frame_start
     if TEST_MODE:
         bpy.context.scene.frame_end = frame_start
-        bpy.data.scenes[CURRENT_SCENE].render.filepath = TEST_PATH
+        bpy.data.scenes[CURRENT_SCENE].render.filepath = TEST_PATH + marker_name + "_"
     else:
         bpy.context.scene.frame_end = frame_end
-        bpy.data.scenes[CURRENT_SCENE].render.filepath = RESULT_PATH
+        bpy.data.scenes[CURRENT_SCENE].render.filepath = RESULT_PATH + marker_name + "_"
 
     bpy.context.scene.camera = bpy.data.objects[CAMERA]
     print("#### Render Start  #### " + marker_name + "frame:" + str(frame_start) + \
