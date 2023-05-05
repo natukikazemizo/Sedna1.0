@@ -24,11 +24,11 @@ def hide_collection(collection_name, hide):
 
 def hide(scene_name, show_collections, hide_collections):
 
-    if scene_name not in bpy.data.scenes:
-        print("scene not found:" + scene_name)
-        return
+#    if scene_name not in bpy.data.scenes:
+#        print("scene not found:" + scene_name)
+#        return
 
-    bpy.context.window.scene = bpy.data.scenes[scene_name]
+#    bpy.context.window.scene = bpy.data.scenes[scene_name]
     
     for collection_name in show_collections:
         hide_collection(collection_name, False)
@@ -51,21 +51,22 @@ bpy.context.scene.render.resolution_percentage = 100
 
 
 # 0000 Init 
-hide("0000_Init", ["FeatureTree", "Paintbrush", "PaintPlates", "WarnedSRC", \
-    "VCS", "RelatedDocuments", "HighlightedSourceCode", "SyncSrcAndTree"], [])
+#hide("0000_Init", ["FeatureTree", "Paintbrush", "PaintPlates", "WarnedSRC", \
+#    "VCS", "RelatedDocuments", "HighlightedSourceCode", "SyncSrcAndTree"], [])
 # 0010 N -> Rejected?
-hide("0010_N", [], ["FeatureTree", "Paintbrush", "PaintPlates", "WarnedSRC", \
-    "VCS", "RelatedDocuments", "HighlightedSourceCode", "SyncSrcAndTree"])
+#hide("0010_N", [], ["FeatureTree", "Paintbrush", "PaintPlates", "WarnedSRC", \
+#    "VCS", "RelatedDocuments", "HighlightedSourceCode", "SyncSrcAndTree"])
 # 0020 N call DDE
-hide("0020_N_call_DDE", [], [])
+#hide("0020_N_call_DDE", [], [])
 # 0030 FeatureTree
-hide("0030_FeatureTree", ["FeatureTree"], [])
+#hide("0030_FeatureTree", ["FeatureTree"], [])
 # 0040 Uninstall DDE
-hide("0040_Uninstall_DDE", [], ["FeatureTree"])
+#hide("0040_Uninstall_DDE", [], ["FeatureTree"])
 # 0050 Highlighted SRC
-hide("0050_Highlighted_SRC", ["HighlightedSourceCode"], [])
+#hide("0050_Highlighted_SRC", ["HighlightedSourceCode"], [])
 # 0060 SVN
-hide("0060_SVN", ["VCS"], ["HighlightedSourceCode"])
+#hide("0060_SVN", ["VCS"], ["HighlightedSourceCode"])
+hide("0060_SVN", ["VCS","HighlightedSourceCode"], [])
 # 0070 Emotional Exception
 # hide("0070_EmotionalException", [], ["VCS"])
 # 0080 Sync Code And Tree
