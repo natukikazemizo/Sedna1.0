@@ -1,0 +1,50 @@
+﻿
+ 'OBCtrlPicts.Root'.        'OBCtrlPic.Axis' detected as valid, will replace already set one 'OBCtrlPic.Arrow'.
+ 'OBCtrlPicts.Root'.        'OBCtrlPic.Cross.Circle' detected as valid, will replace already set one 'OBCtrlPic.Axis'.
+ 'OBCtrlPicts.Root'.        'OBCtrlPic.Cross.DX' detected as valid, will replace already set one 'OBCtrlPic.Cross.Circle'.
+ 'OBCtrlPicts.Root'.        'OBCtrlPic.Cross.Plus' detected as valid, will replace already set one 'OBCtrlPic.Cross.DX'.
+ 'OBCtrlPicts.Root'.        'OBCtrlPic.Cross.X' detected as valid, will replace already set one 'OBCtrlPic.Cross.Plus'.
+ 'OBCtrlPicts.Root'.        'OBCtrlPic.Cube' detected as valid, will replace already set one 'OBCtrlPic.Cross.X'.
+ 'OBCtrlPicts.Root'.        'OBCtrlPic.Eye' detected as valid, will replace already set one 'OBCtrlPic.Cube'.
+ 'OBCtrlPicts.Root'.        'OBCtrlPic.FullArrow' detected as valid, will replace already set one 'OBCtrlPic.Eye'.
+ 'OBCtrlPicts.Root'.        'OBCtrlPic.Gaze' detected as valid, will replace already set one 'OBCtrlPic.FullArrow'.
+ 'OBCtrlPicts.Root'.        'OBCtrlPic.Loc.Cube' detected as valid, will replace already set one 'OBCtrlPic.Gaze'.
+ 'OBCtrlPicts.Root'.        'OBCtrlPic.Loc.Dia' detected as valid, will replace already set one 'OBCtrlPic.Loc.Cube'.
+ 'OBCtrlPicts.Root'.        'OBCtrlPic.Loc.Triangle' detected as valid, will replace already set one 'OBCtrlPic.Loc.Dia'.
+ 'OBCtrlPicts.Root'.        'OBCtrlPic.Mov.X' detected as valid, will replace already set one 'OBCtrlPic.Loc.Triangle'.
+ 'OBCtrlPicts.Root'.        'OBCtrlPic.Mov.Y' detected as valid, will replace already set one 'OBCtrlPic.Mov.X'.
+ 'OBCtrlPicts.Root'.        'OBCtrlPic.Pin' detected as valid, will replace already set one 'OBCtrlPic.Mov.Y'.
+ 'OBCtrlPicts.Root'.        'OBCtrlPic.Pole.Dire' detected as valid, will replace already set one 'OBCtrlPic.Pin'.
+ 'OBCtrlPicts.Root'.        'OBCtrlPic.Pole.Star' detected as valid, will replace already set one 'OBCtrlPic.Pole.Dire'.
+ 'OBCtrlPicts.Root'.        'OBCtrlPic.Pole.Tri' detected as valid, will replace already set one 'OBCtrlPic.Pole.Star'.
+ 'OBCtrlPicts.Root'.        'OBCtrlPic.Rot' detected as valid, will replace already set one 'OBCtrlPic.Pole.Tri'.
+ 'OBCtrlPicts.Root'.        'OBCtrlPic.Size' detected as valid, will replace already set one 'OBCtrlPic.Rot'.
+ 'OBCtrlPicts.Root'.        'OBCtrlPic.Tetra' detected as valid, will replace already set one 'OBCtrlPic.Size'.
+ 'OBCtrlPicts.Root'.        'OBCtrlPic.Cross.Plus' detected as valid, will replace already set one 'OBCtrlPic.Arrow'.
+ 'OBCtrlPicts.Root'.        'OBCtrlPic.Loc.Cube' detected as valid, will replace already set one 'OBCtrlPic.Cross.Plus'.
+ 'OBCtrlPicts.Root'.        'OBCtrlPic.Loc.Dia' detected as valid, will replace already set one 'OBCtrlPic.Loc.Cube'.
+ 'OBCtrlPicts.Root'.        'OBCtrlPic.Loc.Triangle' detected as valid, will replace already set one 'OBCtrlPic.Loc.Dia'.
+ 'OBCtrlPicts.Root'.        'OBCtrlPic.Pole.Star' detected as valid, will replace already set one 'OBCtrlPic.Loc.Triangle'.
+ 'OBCtrlPicts.Root'.        'OBCtrlPic.Pole.Tri' detected as valid, will replace already set one 'OBCtrlPic.Pole.Star'.
+ 'OBCtrlPicts.Root'.        'OBCtrlPic.Rot' detected as valid, will replace already set one 'OBCtrlPic.Pole.Tri'.
+ 'OBCtrlPicts.Root'.        'OBCtrlPic.Size' detected as valid, will replace already set one 'OBCtrlPic.Rot'.
+Info: Saved "DDE_0050_Studio.blend"
+
+
+bpy.context.active_pose_bone.custom_shape = bpy.data.objects["CtrlPic.Pin"]
+bpy.context.active_pose_bone.custom_shape = bpy.data.objects["CtrlPic.Eye", "//..\\..\\CtrlPic.blend"]
+bpy.context.active_pose_bone.custom_shape = bpy.data.objects["CtrlPic.Eye"]
+Saved "DDEandN_cartoon.blend"
+
+ 'OBCtrlPicts.Root'.        Current proposed root 'OBCtrlPic.Cross.Plus' detected as valid, will replace already set one 'OBCtrlPic.Axis'.
+ 'OBCtrlPicts.Root'.        Current proposed root 'OBCtrlPic.Loc.Dia' detected as valid, will replace already set one 'OBCtrlPic.Cross.Plus'.
+ 'OBCtrlPicts.Root'.        Current proposed root 'OBCtrlPic.Pole.Star' detected as valid, will replace already set one 'OBCtrlPic.Loc.Dia'.
+ 'OBCtrlPicts.Root'.        Current proposed root 'OBCtrlPic.Rot' detected as valid, will replace already set one 'OBCtrlPic.Pole.Star'.
+ 'OBCtrlPicts.Root'.        Current proposed root 'OBCtrlPic.Size' detected as valid, will replace already set one 'OBCtrlPic.Rot'.
+ 'OBCtrlPicts.Root'.        Current proposed root 'OBCtrlPic.Cross.Plus' detected as valid, will replace already set one 'OBCtrlPic.Arrow'.
+ 'OBCtrlPicts.Root'.        Current proposed root 'OBCtrlPic.Loc.Cube' detected as valid, will replace already set one 'OBCtrlPic.Cross.Plus'.
+ 'OBCtrlPicts.Root'.        Current proposed root 'OBCtrlPic.Loc.Dia' detected as valid, will replace already set one 'OBCtrlPic.Loc.Cube'.
+ 'OBCtrlPicts.Root'.        Current proposed root 'OBCtrlPic.Loc.Triangle' detected as valid, will replace already set one 'OBCtrlPic.Loc.Dia'.
+ 'OBCtrlPicts.Root'.        Current proposed root 'OBCtrlPic.Rot' detected as valid, will replace already set one 'OBCtrlPic.Loc.Triangle'.
+ 'OBCtrlPicts.Root'.        Current proposed root 'OBCtrlPic.Size' detected as valid, will replace already set one 'OBCtrlPic.Rot'.
+
