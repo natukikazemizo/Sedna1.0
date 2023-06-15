@@ -54,19 +54,21 @@ bpy.context.scene.render.resolution_percentage = 100
 #hide("0000_Init", ["FeatureTree", "Paintbrush", "PaintPlates", "WarnedSRC", \
 #    "VCS", "RelatedDocuments", "HighlightedSourceCode", "SyncSrcAndTree"], [])
 # 0010 N -> Rejected?
-#hide("0010_N", [], ["FeatureTree", "Paintbrush", "PaintPlates", "WarnedSRC", \
+# hide("0010_N", ["RelatedDocuments"], ["FeatureTree", "Paintbrush", "PaintPlates", "WarnedSRC", \
 #    "VCS", "RelatedDocuments", "HighlightedSourceCode", "SyncSrcAndTree"])
 # 0020 N call DDE
-#hide("0020_N_call_DDE", [], [])
+#hide("0020_N_call_DDE", ["RelatedDocuments"], [])
+# 0026 DDE_Appear
+hide("0025_N_call_DDE", [], ["RelatedDocuments"])
 # 0030 FeatureTree
-#hide("0030_FeatureTree", ["FeatureTree"], [])
+#hide("0030_FeatureTree", ["FeatureTree"], ["RelatedDocuments"])
 # 0040 Uninstall DDE
 #hide("0040_Uninstall_DDE", [], ["FeatureTree"])
 # 0050 Highlighted SRC
 #hide("0050_Highlighted_SRC", ["HighlightedSourceCode"], [])
 # 0060 SVN
 #hide("0060_SVN", ["VCS"], ["HighlightedSourceCode"])
-hide("0060_SVN", ["VCS","HighlightedSourceCode"], [])
+# hide("0060_SVN", ["VCS","HighlightedSourceCode"], [])
 # 0070 Emotional Exception
 # hide("0070_EmotionalException", [], ["VCS"])
 # 0080 Sync Code And Tree
