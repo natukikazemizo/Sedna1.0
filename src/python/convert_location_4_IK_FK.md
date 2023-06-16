@@ -34,11 +34,17 @@ $\vec{Q}=\vec{Y}-(\vec{X}-\vec{P}）$  (式2)
 * 処理対象Armature名：ARMATURE_NAME
 * 変換元のFrame：ORG_FRAME
 * 変換後のFrameとの差：OFFSET_FRAME
-* IK/FK切替用のボーン名
+* IK/FK切替用のボーン名：IK_FK_CHG_BONE
   * 左腕用：PIN_ARM_L
   * 左腕用：PIN_ARM_R
   * 左腕用：PIN_LEG_L
   * 左腕用：PIN_LEG_R
+## クラス
+* ボーン座標：BoneCoordinates
+  * ボーン名：bone_name
+  * IK：IK
+   * ターゲット種別
+  * FK：
 ## 変数
 * 
 ボーン変換ペアリスト
