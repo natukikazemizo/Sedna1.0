@@ -1,6 +1,7 @@
 convert_location_4_IK_FK.py  
 ===
 IK/FK切替用の、コントロールボーンの位置変更処理  
+2023.06.04 Natukikazemizo（Nミゾ）新規作成
 
 # 開発目的
 キャラクター：DDEの両手両脚のIK/FKを切り替えた際に、コントロールボーンの親子関係が切り替わるため、コントロールボーンが勝手に動いてしまう。手作業でもコントロールボーンの位置を修正できるが、作業に三十分～一時間程度かかってしまうため、本処理を開発する。
@@ -10,7 +11,7 @@ IK/FK切替用の、コントロールボーンの位置変更処理
 # 技術的補足
 ## ボーンの座標変換
 ### 目的
-ローカル座標 $\vec{P}$ 世界座標: $\vec{X}$ であるボーン $A$ を世界座標 $\vec{Y}$ に移動する。この世界座標 $\vec{Y}$ に移動した後ののボーン $A$ のローカル座標 $\vec{Q}$ を求めたい。なお、ボーン $A$ の原点の世界座標を $\vec{O}$ とする。  
+ボーン $A$ は世界座標 $\vec{X}$ で、ローカル座標 $\vec{P}$ で、原点の世界座標は $\vec{O}$ だったとする。このボーン $A$ を世界座標 $\vec{Y}$ に移動するためのローカル座標 $\vec{Q}$ を求めたい。
 ボーン $A$ のローカル座標 $\vec{P}$ は、ボーン $\vec{A}$ の世界座標 $\vec{X}$ とボーン $A$ の原点 $\vec{O}$ の差なので、  
 $\vec{P}=\vec{X}-\vec{O}$  
 となり、式を変形すると  
@@ -30,7 +31,9 @@ $\vec{Q}=\vec{Y}-(\vec{X}-\vec{P}）$  (式2)
 * ボーンの部位：PartOfBone
   * Head, Tail, Location
 * 四肢：Limb
-  * Arm_L, Arm_R, Leg_L, Leg_R)
+  * Arm_L, Arm_R, Leg_L, Leg_R
+* 運動学：Kinematics
+  * IK, FK
 
 
 ## 定数
@@ -80,34 +83,27 @@ $\vec{Q}=\vec{Y}-(\vec{X}-\vec{P}）$  (式2)
     * FK用の座標取得　→　IK用の座標取得と同様に実装するので、関数化？
 * 先フレームに変換後座標を設定
   * Current FrameをORG_FRAME+OFFSET_FRAMEにする
+  * 四肢のIK/FK判定
+    * LimbをKey Kinematicsを値にした四肢運動学辞書を作成
+    * Limbでループ
+      * IK/FK切替ボーン辞書より、IK/FK切替判定用のボーン名を取得
+      * IK/FK切替判定用のボーン名のLocal座標のVectorの長さ＞MIN_FK　の場合、FKと判定する。
+      そうでない場合は、IKと判定し、四肢運動学辞書に設定する。
   * trans_bone_namesでループ
     * trans_bone_names[i]でボーン変換辞書よりボーン変換を取得
     * IK/FK判定
-      * ボーン変換.四肢 と、IK/FK切替ボーン辞書より、IK/FK切替判定用のボーン名を取得する。
-      * IK/FK切替判定用のボーン名のLocal座標の長さ＞MIN_FK　の場合、FKと判定する。
-      そうでない場合は、IKと判定する。
+      * ボーン変換.四肢 と、四肢運動学辞書よりIK/FKを取得
     * 移動先座標取得
       * 座標記録用の辞書よりボーン座標を取得する。IKの場合はIK用座標を、FKの場合はFK用座標を取得する。
     * 変換後座標設定
-      * trans_bone_names[i]のボーンの
-
+      * trans_bone_names[i]で座標設定対象ボーン取得
+      * 座標設定対象ボーン.location　に、  
+        移動先座標　－　(移動前のボーンの世界座標　－　移動前のボーンのローカル座標)
+        を設定
 
 * 終了処理
-  * Current FrameをORG_FRAMEにする
-
-
-
-元Frame
-Frameのオフセット値
-Current Frameに元フレームを設定
-ボーンペアリストでループ
-IK/FKで位置が変1わるボーンの元フレームのWorld Location：org_w_locationを取得し、保持しておく
-変換先フレーム（変更元フレーム＋オフセットフレーム数で計算）にカレンとフレームを切り替える
-ボーンのLocal Location:new_l_locaton と World Location：new_w_location を取得する
-ボーンのLocal Location に
-org_w_location - (new_w_location - new_l_location)
-を設定する。
+  * Current FrameをORG_FRAMEにする  
 
 # 制限事項
-
+* 作成中　コーディング時に追記予定
 
