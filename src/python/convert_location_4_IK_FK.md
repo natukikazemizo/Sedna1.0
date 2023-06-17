@@ -40,13 +40,13 @@ $\vec{Q}=\vec{Y}-(\vec{X}-\vec{P}）$  (式2)
 * 処理対象Armature名：ARMATURE_NAME
 * 変換元のFrame：ORG_FRAME
 * 変換後のFrameとの差：OFFSET_FRAME
-* IK/FK切替用のボーン名：IK_FK_CHG_BONE
-  * 左腕用：PIN_ARM_L
-  * 右腕用：PIN_ARM_R
-  * 左脚用：PIN_LEG_L
-  * 右脚用：PIN_LEG_R
-* FKモードに切り替えられたと判定する最小値：MIN_FK
-* 座標変換対象のボーン名：trans_bone_names
+* IK/FK切替用のボーン名
+  * 左腕用：ARM_PIN_L
+  * 右腕用：ARM_PIN_R
+  * 左脚用：LEG_PIN_L
+  * 右脚用：LEG_PIN_R
+* FKモードに切り替えられたと判定する最小値：MIN_FK  
+* ~~座標変換対象のボーン名：trans_bone_names~~
 * 原点(Vector型で0,0,0)：ORIGIN
 ## クラス
 * ボーン変換：BoneTransformation
@@ -60,8 +60,10 @@ $\vec{Q}=\vec{Y}-(\vec{X}-\vec{P}）$  (式2)
 
 ## 処理の流れ
 * 変数初期化
-  * IK/FK切替ボーン辞書作成
-    {Arm_L:PIN_ARM_L},{Arm_R:PIN_ARM_R},{Leg_L:PIN_Leg_L},{Leg_R:PIN_Leg_R}
+  * IK/FK切替ボーン辞書作成  
+    ```
+    {Limb.Arm_L:ARM_PIN_L, <<以下略>>}
+    ```
   * ボーン変換辞書作成
     * trans_bone_names 全てに対して、ボーン座標クラスのインスタンスを紐づける辞書を作成する。ボーン座標クラスの初期値はベタ書き。
        * 初期値は
