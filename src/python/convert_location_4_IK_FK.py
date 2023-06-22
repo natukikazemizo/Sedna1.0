@@ -104,12 +104,12 @@ HEAD_BONE_NAME_FK = "bone_name_FK"
 HEAD_BONE_PART_FK = "bone_part_FK"
 
  
-class SrcNamePart:
-    """Source & name of bone & part of bone
-    座標の取得元とボーンの名前とボーンの部位
+class SrcInfo:
+    """Source information of coordinates
+    座標の元情報
     """
 
-    def __init__(self, src, name, part):
+    def __init__(self, src:CoordinateSrc, name, part:PartOfBone):
         """
         Parameters
         ----------
@@ -117,7 +117,7 @@ class SrcNamePart:
             name of bone
         src : CoordinateSrc
             Source of coordinate
-        part : POB
+        part : PartOfBone
             part of bone
         """
 
@@ -125,7 +125,7 @@ class SrcNamePart:
         self.name = name
         self.part = part
 
-    def get_location(self, armature):
+    def get_part_location(self, armature):
         """Get the coordinates according to the bone part/
         ボーンの部位に応じた座標を取得する
         Parameters
@@ -153,51 +153,56 @@ class SrcNamePart:
 
         return loc
 
+    def set_world_location(self, world_location:Vector):
+        self.world_location = world_location
+
+    def get_world_location(self):
+        """Get world location
+        世界座標取得
+        """
+        return self.world_location
+
 class BoneTrans:
     """ Bone coordinate Transformation
     ボーン座標変換
     """
-    def __init__(self, limb, src_name_part_IK, src_name_part_FK):
+    def __init__(self, bone_name, limb, src_info_IK:SrcInfo, \
+                  src_info_FK:SrcInfo):
         """
         Parameters
         ----------
+        bone_name:str
+            Bone name for coordinate transformation
         limb : Limb
             Limb to which the bone belongs
-        src_name_part_IK : SrcNamePart
+        src_info_IK : SrcInfo
             Bone coordinate information used for IK
-        src_name_part_FK : SrcNamePart
+        src_info_FK : SrcInfo
             Bone coordinate information used for FK
         """
+        self.bone_name = bone_name
+        self.limb:Limb = limb
+        self.src_info_IK = src_info_IK
+        self.src_info_FK = src_info_FK
 
-        self.limb = limb
-        self.src_name_part_IK = src_name_part_IK
-        self.src_name_part_FK = src_name_part_FK
-
-    def get_org_location(self, armature, kinematic) :
-        """Get original location
-        元座標取得
+    def set_org_location(self, armature) :
+        """Set original location
+        元座標設定
         Parameters
         ----------
         armature : bpy_types.Object
             Armature to which the bone 
             whose coordinates are to be obtained belongs
-        kinematic : Kinematics
-            coordinate target Kinematic(IK or FK)
-        Returns
-        -------
-        class 'Vector' : Transformed Location
         """
-        if kinematic == Kinematics.IK:
-            return self.src_name_part_IK.get_location(armature)
-        elif  kinematic == Kinematics.FK:
-            return self.src_name_part_FK.get_location(armature)
-
-        return None
+        self.src_info_IK.set_world_location(\
+            self.src_info_IK.get_part_location(armature))
+        self.src_info_FK.set_world_location(\
+            self.src_info_FK.get_part_location(armature))
 
 
-    def get_location(self, armature, limb_kinematics):
-        """Get Location
-        座標取得
+    def get_trans_location(self, armature, limb_kinematics:dict[str, Limb]):
+        """Get Transrated Location
+        変換後座標取得
         Parameters
         ----------
         armature : bpy_types.Object
@@ -210,21 +215,39 @@ class BoneTrans:
         class 'Vector' : Transformed Location
         """
 
+        # Get SrcInfo
         if (limb_kinematics[self.limb]) == Kinematics.IK:
-            return self.src_name_part_IK.get_location(armature)
+            src_info = self.src_info_IK
         elif  (limb_kinematics[self.limb]) == Kinematics.FK:
-            return self.src_name_part_FK.get_location(armature)
+            src_info = self.src_info_FK
+        else:
+            return None
+        
+        # Get Location
+        if src_info.src == CoordinateSrc.Origin:
+            return ORIGIN
+        elif src_info.src == CoordinateSrc.Bone:
+            bone = amt.pose.bones[self.bone_name]
+            bone_local_location = bone.location
+            bone_world_location = bone.head
+            return src_info.get_world_location() - \
+                (bone_world_location - bone_local_location)
+        else:
+            return None
 
         return None
 
 def check_IK_FK(amt, pin_bone_name):
     """Check IK or FK from pin_bone_name
-            Parameters
+        Parameters
         ----------
         armature : bpy_types.Object
             target armature
         pin_bone_name : str
             IK/FK controller bone's name
+        Returns
+        -------
+        IKorFK : Kinematics
     """
     amt.pose.bones[pin_bone_name].location
     if amt.pose.bones[pin_bone_name].location.y > MIN_FK:
@@ -250,14 +273,14 @@ header, body_rows = utils_io_csv.read(SETTING_FILE_PATH)
 
 # Create column name dictionary from header row data
 # ヘッダ行データから、列名辞書の作成
-col_name_dic = {}
+col_name_dic:dict[int, str] = {}
 for i, val in enumerate(header):
     col_name_dic[i] = val
 
 # Create a bone coordinate conversion dictionary 
 # from the column name dictionary and body row data.
 # 列名辞書と本体行データから、ボーン座標変換辞書を作成する。
-bones_transformation = {}
+bones_transformation: dict[str, BoneTrans] = {}
 for row in enumerate(body_rows):
     for i, col in enumerate(row):
         if col_name_dic[i] == HEAD_BONE_NAME:
@@ -277,8 +300,8 @@ for row in enumerate(body_rows):
         elif  col_name_dic[i] == HEAD_BONE_PART_FK:
             bone_part_fk = PartOfBone.value_of(col)
     bones_transformation[bone_name] = BoneTrans(row_limb, \
-            SrcNamePart(src_ik, bone_name_ik, bone_part_ik), \
-            SrcNamePart(src_fk, bone_name_fk, bone_part_fk))
+            SrcInfo(src_ik, bone_name_ik, bone_part_ik), \
+            SrcInfo(src_fk, bone_name_fk, bone_part_fk))
 
 # In the original frame, get the coordinates 
 # of the transformation source from the bone 
@@ -288,27 +311,23 @@ bpy.context.scene.frame_current = ORG_FRAME
 
 amt = bpy.data.objects[ARMATURE_NAME]
 
-org_coordinates = {}
 for key in bones_transformation:
     bone_trans = bones_transformation[key]
-    ik_fk_coordinates = {}
     # Get coordinate for IK
-    # IK/FK用の座標を取得
-    ik_fk_coordinates[Kinematics.IK] = bone_trans.get_org_location(amt, Kinematics.IK)
-    ik_fk_coordinates[Kinematics.FK] = bone_trans.get_org_location(amt, Kinematics.FK)
-    org_coordinates[key] = ik_fk_coordinates
+    # IK/FK用の元座標を設定
+    bone_trans.set_org_location(amt, Kinematics.IK)
 
 # Set the coordinates after conversion in the destination frame
 # 先フレームで、変換後の座標を設定する
 bpy.context.scene.frame_current = ORG_FRAME + FRAME_OFFSET
 
-limb_ik_fk = {}
+limb_ik_fk:dict[str, Limb] = {}
 limb_ik_fk[Limb.Arm_L] = check_IK_FK(amt, ARM_PIN_L)
 limb_ik_fk[Limb.Arm_R] = check_IK_FK(amt, ARM_PIN_R)
 limb_ik_fk[Limb.Leg_L] = check_IK_FK(amt, LEG_PIN_L)
 limb_ik_fk[Limb.Leg_L] = check_IK_FK(amt, LEG_PIN_R)
 
 for key in bones_transformation:
-    amt.pose.bones[key].location = bones_transformation[key].get_location(amt, limb_ik_fk)
+    amt.pose.bones[key].location = bones_transformation[key].get_trans_location(amt, limb_ik_fk)
 
 log.end()
