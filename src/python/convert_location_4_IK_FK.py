@@ -13,6 +13,7 @@ import csv
 import os
 import utils_log
 import utils_io_csv
+import mathutils
 
 # Coordinate Source
 # 座標の取得元
@@ -75,7 +76,7 @@ ARMATURE_NAME = "Armature.DDE"
 # CSVファイルの列名定義
 
 # 処理対象Frame
-ORG_FRAME = 2266
+ORG_FRAME = 2276
 FRAME_OFFSET = 1
 
 # IK/FK切替コントロールボーン名
@@ -90,7 +91,7 @@ SETTING_FILE_PATH = "C:\Sync\GitHub\Sedna1.0\src\python\convert_location_4_IK_FK
 
 # FKモードに切り替えられたと判定する最小値
 MIN_FK = 0.001
-ORIGIN = Vector((0, 0, 0))
+ORIGIN = mathutils.Vector((0, 0, 0))
 
 # Header Titles
 # 列名
@@ -153,7 +154,7 @@ class SrcInfo:
 
         return loc
 
-    def set_world_location(self, world_location:Vector):
+    def set_world_location(self, world_location:mathutils.Vector):
         self.world_location = world_location
 
     def get_world_location(self):
@@ -274,15 +275,20 @@ header, body_rows = utils_io_csv.read(SETTING_FILE_PATH)
 # Create column name dictionary from header row data
 # ヘッダ行データから、列名辞書の作成
 col_name_dic:dict[int, str] = {}
-for i, val in enumerate(header):
+for (i, val) in enumerate(header):
     col_name_dic[i] = val
-
 # Create a bone coordinate conversion dictionary 
 # from the column name dictionary and body row data.
 # 列名辞書と本体行データから、ボーン座標変換辞書を作成する。
 bones_transformation: dict[str, BoneTrans] = {}
 for row in enumerate(body_rows):
+    print(row)
     for i, col in enumerate(row):
+        print("col:")
+        print(col)
+        print("i:")
+        print(i)
+
         if col_name_dic[i] == HEAD_BONE_NAME:
             bone_name = col
         elif  col_name_dic[i] == HEAD_LIMB:
