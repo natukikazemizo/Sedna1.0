@@ -1,3 +1,5 @@
 {
-    "python.analysis.extraPaths": ["C:/Sync/GitHub/Sedna1.0/src/python/modules"]
+    "python.analysis.extraPaths": ["C:/Sync/GitHub/Sedna1.0/src/python/modules"],
+    "python.pythonPath": "C:/Program Files/Blender Foundation/Blender 3.5/3.5/python/bin/python",
+    "Python.autoComplete.extraPaths": ["<C:/Program Files/Blender Foundation/Blender 3.5/3.5/scripts/modules"]
 }

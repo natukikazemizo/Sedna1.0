@@ -9,7 +9,6 @@
 # 2023.06.13 Natukikazemizo(Nミゾ)
 from enum import Enum
 import bpy
-import csv
 import os
 import utils_log
 import utils_io_csv
@@ -24,7 +23,7 @@ class CoordinateSrc(Enum):
     Bone = "Bone"    # ボーン
     Origin = "Origin"  # 原点
 
-    def value_of(self, target_value):
+    def value_of(target_value):
         for e in CoordinateSrc:
             if e.value == target_value:
                 return e
@@ -39,7 +38,7 @@ class PartOfBone(Enum):
     Tail = "Tail"
     Location = "Location"
 
-    def value_of(self, target_value):
+    def value_of(target_value):
         for e in PartOfBone:
             if e.value == target_value:
                 return e
@@ -55,7 +54,7 @@ class Limb(Enum):
     Leg_L = "Leg_L"
     Leg_R = "Leg_R"
 
-    def value_of(self, target_value):
+    def value_of(target_value):
         for e in Limb:
             if e.value == target_value:
                 return e
@@ -275,19 +274,16 @@ header, body_rows = utils_io_csv.read(SETTING_FILE_PATH)
 # Create column name dictionary from header row data
 # ヘッダ行データから、列名辞書の作成
 col_name_dic:dict[int, str] = {}
-for (i, val) in enumerate(header):
+for i, val in enumerate(header):
     col_name_dic[i] = val
+
 # Create a bone coordinate conversion dictionary 
 # from the column name dictionary and body row data.
 # 列名辞書と本体行データから、ボーン座標変換辞書を作成する。
 bones_transformation: dict[str, BoneTrans] = {}
-for row in enumerate(body_rows):
-    print(row)
+
+for j, row in enumerate(body_rows):
     for i, col in enumerate(row):
-        print("col:")
-        print(col)
-        print("i:")
-        print(i)
 
         if col_name_dic[i] == HEAD_BONE_NAME:
             bone_name = col
@@ -305,7 +301,7 @@ for row in enumerate(body_rows):
             bone_name_fk = col
         elif  col_name_dic[i] == HEAD_BONE_PART_FK:
             bone_part_fk = PartOfBone.value_of(col)
-    bones_transformation[bone_name] = BoneTrans(row_limb, \
+    bones_transformation[bone_name] = BoneTrans(bone_name, row_limb, \
             SrcInfo(src_ik, bone_name_ik, bone_part_ik), \
             SrcInfo(src_fk, bone_name_fk, bone_part_fk))
 
@@ -321,7 +317,7 @@ for key in bones_transformation:
     bone_trans = bones_transformation[key]
     # Get coordinate for IK
     # IK/FK用の元座標を設定
-    bone_trans.set_org_location(amt, Kinematics.IK)
+    bone_trans.set_org_location(amt)
 
 # Set the coordinates after conversion in the destination frame
 # 先フレームで、変換後の座標を設定する
@@ -331,7 +327,7 @@ limb_ik_fk:dict[str, Limb] = {}
 limb_ik_fk[Limb.Arm_L] = check_IK_FK(amt, ARM_PIN_L)
 limb_ik_fk[Limb.Arm_R] = check_IK_FK(amt, ARM_PIN_R)
 limb_ik_fk[Limb.Leg_L] = check_IK_FK(amt, LEG_PIN_L)
-limb_ik_fk[Limb.Leg_L] = check_IK_FK(amt, LEG_PIN_R)
+limb_ik_fk[Limb.Leg_R] = check_IK_FK(amt, LEG_PIN_R)
 
 for key in bones_transformation:
     amt.pose.bones[key].location = bones_transformation[key].get_trans_location(amt, limb_ik_fk)

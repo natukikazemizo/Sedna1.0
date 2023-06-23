@@ -3,14 +3,14 @@ Hand.L,Arm_L,Origin,-,Zero,Bone,Hand_Rot.L,Head
 Hand_Rot_T.L,Arm_L,Bone,Hand_Rot_T.L,Head,Bone,Hand_Rot.L,Tail
 Hand_T.L,Arm_L,Bone,Hand_T.L,Head,Bone,Hand_T.L,Head
 Hand_P.L,Arm_L,Bone,Hand_P.L,Head,Bone,Hand_P.L,Head
-Elbo_T.L,Arm_L,Bone,Humerus_L.001,Tail,Bone,Elbo_T.L,Head
+Elbo_T.L,Arm_L,Bone,Humerus.L.001,Tail,Bone,Elbo_T.L,Head
 Sleeve_T.L,Arm_L,Bone,Sleeve_T.L,Head,Bone,Sleeve_T.L,Head
 Ulna_P.L,Arm_L,Bone,Ulna_P.L,Head,Bone,Ulna_P.L,Head
 Hand.R,Arm_R,Origin,-,Zero,Bone,Hand_Rot.R,Head
 Hand_Rot_T.R,Arm_R,Bone,Hand_Rot_T.R,Head,Bone,Hand_Rot.R,Tail
 Hand_T.R,Arm_R,Bone,Hand_T.R,Head,Bone,Hand_T.R,Head
 Hand_P.R,Arm_R,Bone,Hand_P.R,Head,Bone,Hand_P.R,Head
-Elbo_T.R,Arm_R,Bone,Humerus_L.001,Tail,Bone,Elbo_T.R,Head
+Elbo_T.R,Arm_R,Bone,Humerus.R.001,Tail,Bone,Elbo_T.R,Head
 Sleeve_T.R,Arm_R,Bone,Sleeve_T.R,Head,Bone,Sleeve_T.R,Head
 Ulna_P.R,Arm_R,Bone,Ulna_P.R,Head,Bone,Ulna_P.R,Head
 Thigh_T.L,Leg_L,Bone,Thigh.Tail.L,Tail,Bone,Thigh_T.L,Head
