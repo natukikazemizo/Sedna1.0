@@ -125,12 +125,12 @@ class SrcInfo:
         self.name = name
         self.part = part
 
-    def get_part_location(self, armature):
+    def get_part_location(self, amt):
         """Get the coordinates according to the bone part/
         ボーンの部位に応じた座標を取得する
         Parameters
         ----------
-        armature : bpy_types.Object
+        amt : bpy_types.Object
             Armature to which the bone 
             whose coordinates are to be obtained belongs
 
@@ -143,11 +143,11 @@ class SrcInfo:
 
         if self.src == CoordinateSrc.Bone:
             if self.part == PartOfBone.Head:
-                loc = armature.pose.bones[self.name].head
+                loc = amt.pose.bones[self.name].head
             elif self.part == PartOfBone.Tail:
-                loc = armature.pose.bones[self.name].tail
+                loc = amt.pose.bones[self.name].tail
             elif self.part == PartOfBone.Location:
-                loc = armature.pose.bones[self.name].location
+                loc = amt.pose.bones[self.name].location
         elif self.src == CoordinateSrc.Origin:
             loc = ORIGIN
 
@@ -185,27 +185,27 @@ class BoneTrans:
         self.src_info_IK = src_info_IK
         self.src_info_FK = src_info_FK
 
-    def set_org_location(self, armature) :
+    def set_org_location(self, amt) :
         """Set original location
         元座標設定
         Parameters
         ----------
-        armature : bpy_types.Object
+        amt : bpy_types.Object
             Armature to which the bone 
             whose coordinates are to be obtained belongs
         """
         self.src_info_IK.set_world_location(\
-            self.src_info_IK.get_part_location(armature))
+            self.src_info_IK.get_part_location(amt))
         self.src_info_FK.set_world_location(\
-            self.src_info_FK.get_part_location(armature))
+            self.src_info_FK.get_part_location(amt))
 
 
-    def get_trans_location(self, armature, limb_kinematics:dict[str, Limb]):
+    def get_trans_location(self, amt, limb_kinematics:dict[str, Limb]):
         """Get Transrated Location
         変換後座標取得
         Parameters
         ----------
-        armature : bpy_types.Object
+        amt : bpy_types.Object
             Armature to which the bone 
             whose coordinates are to be obtained belongs
         limb_kinematics : dict
@@ -241,8 +241,8 @@ def check_IK_FK(amt, pin_bone_name):
     """Check IK or FK from pin_bone_name
         Parameters
         ----------
-        armature : bpy_types.Object
-            target armature
+        amt : bpy_types.Object
+            target amt
         pin_bone_name : str
             IK/FK controller bone's name
         Returns
@@ -254,6 +254,31 @@ def check_IK_FK(amt, pin_bone_name):
         return Kinematics.FK
     else:
         return Kinematics.IK
+
+def replace_keyframe(frame, co:mathutils.Vector, bone_name, amt):
+    """Replace Keyframe
+        Parameters
+        ----------
+        frame : int
+            target frame
+        co : mathutils.Vector
+            coordinate
+        bone_name : str
+            bone name
+        amt : bpy_types.Object
+            target Armature
+
+    """
+    key = 'pose.bones["{}"].location'.format(bone_name)
+    for fcurve in filter(lambda x: x.data_path==key, amt.animation_data.action.fcurves):
+        val = 0
+        if fcurve.array_index == 0:
+            val = co.x
+        elif fcurve.array_index == 1:
+            val = co.y
+        elif fcurve.array_index == 2:
+            val = co.z
+        fcurve.keyframe_points.insert(frame, val, options = {'REPLACE'})
 
 
 log = utils_log.UtilLog(os.path.basename(__file__))
@@ -330,6 +355,9 @@ limb_ik_fk[Limb.Leg_L] = check_IK_FK(amt, LEG_PIN_L)
 limb_ik_fk[Limb.Leg_R] = check_IK_FK(amt, LEG_PIN_R)
 
 for key in bones_transformation:
-    amt.pose.bones[key].location = bones_transformation[key].get_trans_location(amt, limb_ik_fk)
+    co = bones_transformation[key].get_trans_location(amt, limb_ik_fk)
+    replace_keyframe(bpy.context.scene.frame_current, co, key, amt)
+
+bpy.context.scene.frame_current = ORG_FRAME
 
 log.end()
