@@ -335,6 +335,7 @@ for j, row in enumerate(body_rows):
 # of the armature and make it into a dictionary.
 # 元フレームで、ArmatureのBoneから変換元の座標を取得し、辞書化する。
 bpy.context.scene.frame_current = ORG_FRAME
+bpy.context.view_layer.update()
 
 amt = bpy.data.objects[ARMATURE_NAME]
 
@@ -347,6 +348,7 @@ for key in bones_transformation:
 # Set the coordinates after conversion in the destination frame
 # 先フレームで、変換後の座標を設定する
 bpy.context.scene.frame_current = ORG_FRAME + FRAME_OFFSET
+bpy.context.view_layer.update()
 
 limb_ik_fk:dict[str, Limb] = {}
 limb_ik_fk[Limb.Arm_L] = check_IK_FK(amt, ARM_PIN_L)
@@ -359,5 +361,6 @@ for key in bones_transformation:
     replace_keyframe(bpy.context.scene.frame_current, co, key, amt)
 
 bpy.context.scene.frame_current = ORG_FRAME
+bpy.context.view_layer.update()
 
 log.end()
