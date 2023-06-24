@@ -103,7 +103,19 @@ HEAD_SRC_FK = "src_FK"
 HEAD_BONE_NAME_FK = "bone_name_FK"
 HEAD_BONE_PART_FK = "bone_part_FK"
 
- 
+def conv_y_minus_x_z(v:mathutils.Vector):
+    """Convert to y, -x, z
+    """
+    conv_v = mathutils.Vector((v.y, v.x * -1, v.z))
+    return conv_v
+
+def conv_minus_y_x_z(v:mathutils.Vector):
+    """Convert to -y, -x, z
+    """
+    conv_v = mathutils.Vector((v.y * -1, v.x, v.z))
+    return conv_v
+
+
 class SrcInfo:
     """Source information of coordinates
     座標の元情報
@@ -154,7 +166,7 @@ class SrcInfo:
         return loc
 
     def set_world_location(self, world_location:mathutils.Vector):
-        self.world_location = world_location
+        self.world_location = world_location.copy()
 
     def get_world_location(self):
         """Get world location
@@ -230,12 +242,15 @@ class BoneTrans:
             bone = amt.pose.bones[self.bone_name]
             bone_local_location = bone.location
             bone_world_location = bone.head
-            return src_info.get_world_location() - \
-                (bone_world_location - bone_local_location)
+            org = bone_world_location - conv_y_minus_x_z(bone_local_location)
+            return conv_minus_y_x_z(src_info.get_world_location() - org)
+
         else:
             return None
 
-        return None
+
+
+
 
 def check_IK_FK(amt, pin_bone_name):
     """Check IK or FK from pin_bone_name

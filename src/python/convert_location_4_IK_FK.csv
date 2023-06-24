@@ -1,5 +1,5 @@
-bone_name,limb,src_IK,bone_name_IK,bone_part_IK,src_FK,bone_name_FK,bone_part_FK
-Hand.L,Arm_L,Origin,-,Zero,Bone,Hand_Rot.L,Head
+﻿bone_name,limb,src_IK,bone_name_IK,bone_part_IK,src_FK,bone_name_FK,bone_part_FK
+Hand.L,Arm_L,Origin,-,Zero,Bone,Hand_Rot.L,Tail
 Hand_Rot_T.L,Arm_L,Bone,Hand_Rot_T.L,Head,Bone,Hand_Rot.L,Tail
 Hand_T.L,Arm_L,Bone,Hand_T.L,Head,Bone,Hand_T.L,Head
 Hand_P.L,Arm_L,Bone,Hand_P.L,Head,Bone,Hand_P.L,Head
@@ -12,7 +12,7 @@ Tibia_P.L,Leg_L,Bone,Tibia_P.L,Head,Bone,Tibia_P.L,Head
 Foot_P.L,Leg_L,Bone,Foot_P.L,Head,Bone,Foot_P.L,Head
 Foot_Rot_T.L,Leg_L,Bone,Foot_Rot.L,Tail,Bone,Foot_Rot_T.L,Head
 Foot_T.L,Leg_L,Bone,Foot_T.L,Head,Bone,Foot_T.L,Head
-Hand.R,Arm_R,Origin,-,Zero,Bone,Hand_Rot.R,Head
+Hand.R,Arm_R,Origin,-,Zero,Bone,Hand_Rot.R,Tail
 Hand_Rot_T.R,Arm_R,Bone,Hand_Rot_T.R,Head,Bone,Hand_Rot.R,Tail
 Hand_T.R,Arm_R,Bone,Hand_T.R,Head,Bone,Hand_T.R,Head
 Hand_P.R,Arm_R,Bone,Hand_P.R,Head,Bone,Hand_P.R,Head
