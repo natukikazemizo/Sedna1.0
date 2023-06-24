@@ -42,7 +42,7 @@ def write(file_path, data, enc = 'utf-8'):
     except csv.Error as e:
         print(e)
 
-def read(file_path, enc = 'utf-8'):
+def read(file_path, enc = 'utf-8-sig'):
     """ read CSV file
     CSVファイル読み込み
     Parameters
@@ -63,11 +63,13 @@ def read(file_path, enc = 'utf-8'):
     header = []
     data = [] 
     try:
-        if enc == 'utf-8':        
+        if enc == 'utf-8-sig':        
             # utf-8 CSV File
-            with open(file_path, 'r') as csvfile:
+            with open(file_path, 'r', encoding = enc) as csvfile:
                 csv_reader = csv.reader(csvfile, delimiter=',', quotechar='"')
                 header = next(csv_reader)
+                # Replace BOM
+                header[0] = header[0].replace('\ufeff', '')
                 for row in csv_reader:
                     data.append(row)
         else:
