@@ -15,35 +15,36 @@ IK/FK切替用の、コントロールボーンの位置変更処理
 ボーンのローカル座標   $\vec{L}$  
 ボーン座標の単位ベクトル   $\vec{B_{x}}, \vec{B_{y}}, \vec{B_{z}}$  
 求めたい世界座標  $\vec{W}$  
-$A= \left(
-\begin{matrix} 
-\vec{B_{x}} \\ 
-\vec{B_{y}} \\
+
+$$
+A=\begin{pmatrix}
+\vec{B_{x}}\\
+\vec{B_{y}}\\
 \vec{B_{z}}
-\end{matrix} 
-\right)$ 
+\end{pmatrix}
+$$
 
-### ボーン座標を世界座標に変換
-
-$ \vec{W} = \vec{B_{o}} + \vec{L} \times A$
+### ボーン座標を世界座標に変換  
+$\vec{W}=\vec{B_{o}}+\vec{L}\times{A}$  
 
 ### 世界座標をボーン座標に変換
-$ \vec{L} = (\vec{W} - \vec{B_{o}} )  \times {}^t A$
-
-
+$\vec{L}=(\vec{W}-\vec{B_{o}})\times{}^tA$  
 
 ## ボーンの座標変換
 ### 前提
 ボーン $B$  
 ボーンの原点の世界座標 $\vec{W_{ω}}$   
 ボーン座標の単位ベクトル   $\vec{B_{x}}, \vec{B_{y}}, \vec{B_{z}}$  
-$A= \left(
-\begin{matrix} 
+
+$$
+A=
+\begin{pmatrix} 
 \vec{B_{x}} \\ 
 \vec{B_{y}} \\
 \vec{B_{z}}
-\end{matrix} 
-\right)$  
+\end{pmatrix} 
+$$
+
 
 
 移動前の世界座標  $\vec{W_{α}}$  
@@ -59,13 +60,13 @@ $A= \left(
 
 $\vec{B_{p}} \times A=\vec{X}- \vec{W_{ω}} $  
 となり、式を変形すると  
-$\vec{W_{ω}}=\vec{W_{α}}-(\vec{B_{p}} \times A)$  (式1)  
+$\vec{W_{ω}}=\vec{W_{α}}-(\vec{B_{p}} \times A)$  
 となります。
 
 一方求めたいローカル座標 $\vec{B_{q}}$ は、ボーン $B$ の移動後の世界座標 $\vec{W_{β}}$ とボーン $B$ の原点 $\vec{W_{ω}}$ の差を世界座標に変換したものなので、  
 $\vec{B_{q}}=(\vec{W_{β}}-\vec{W_{ω}})  \times {}^t A $  
 となります。そこで、(式1)を代入すると、  
-$\vec{B_{q}}=(\vec{W_{β}}-(\vec{W_{α}}- (\vec{B_{p}} \times A)) \times {}^t A $  (式2)  
+$\vec{B_{q}}=(\vec{W_{β}}-(\vec{W_{α}}- (\vec{B_{p}} \times A)) \times {}^t A $  
 となります。
 
 
