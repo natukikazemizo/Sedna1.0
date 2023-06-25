@@ -103,17 +103,6 @@ HEAD_SRC_FK = "src_FK"
 HEAD_BONE_NAME_FK = "bone_name_FK"
 HEAD_BONE_PART_FK = "bone_part_FK"
 
-def conv_y_minus_x_z(v:mathutils.Vector):
-    """Convert to y, -x, z
-    """
-    conv_v = mathutils.Vector((v.y, v.x * -1, v.z))
-    return conv_v
-
-def conv_minus_y_x_z(v:mathutils.Vector):
-    """Convert to -y, -x, z
-    """
-    conv_v = mathutils.Vector((v.y * -1, v.x, v.z))
-    return conv_v
 
 
 class SrcInfo:
@@ -240,10 +229,20 @@ class BoneTrans:
             return ORIGIN
         elif src_info.src == CoordinateSrc.Bone:
             bone = amt.pose.bones[self.bone_name]
-            bone_local_location = bone.location
-            bone_world_location = bone.head
-            org = bone_world_location - conv_y_minus_x_z(bone_local_location)
-            return conv_minus_y_x_z(src_info.get_world_location() - org)
+            
+            # If IK is enabled, the direction of the specified coordinate vector changes.
+            if self.bone_name == "Hand.L" or self.bone_name == "Hand.R" :
+                bone.constraints["IK"].enabled = False
+                bpy.context.view_layer.update()
+
+            matrix = mathutils.Matrix((bone.x_axis, bone.y_axis, bone.z_axis)).copy()
+            bone_origin = bone.head - (bone.location @ matrix)
+
+            if self.bone_name == "Hand.L" or self.bone_name == "Hand.R" :
+                bone.constraints["IK"].enabled = True
+                bpy.context.view_layer.update()
+
+            return (src_info.get_world_location() - bone_origin) @ matrix.inverted()
 
         else:
             return None
