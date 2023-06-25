@@ -16,13 +16,13 @@ IK/FK切替用の、コントロールボーンの位置変更処理
 ボーン座標の単位ベクトル   $\vec{B_{x}}, \vec{B_{y}}, \vec{B_{z}}$  
 求めたい世界座標  $\vec{W}$  
 
-$$
+$`
 A=\begin{pmatrix}
 \vec{B_{x}}\\
 \vec{B_{y}}\\
 \vec{B_{z}}
 \end{pmatrix}
-$$
+`$
 
 ### ボーン座標を世界座標に変換  
 $\vec{W}=\vec{B_{o}}+\vec{L}\times{A}$  
@@ -36,14 +36,14 @@ $\vec{L}=(\vec{W}-\vec{B_{o}})\times{}^tA$
 ボーンの原点の世界座標 $\vec{W_{ω}}$   
 ボーン座標の単位ベクトル   $\vec{B_{x}}, \vec{B_{y}}, \vec{B_{z}}$  
 
-$$
+$'
 A=
 \begin{pmatrix} 
 \vec{B_{x}} \\ 
 \vec{B_{y}} \\
 \vec{B_{z}}
 \end{pmatrix} 
-$$
+'$
 
 
 
