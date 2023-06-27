@@ -236,14 +236,16 @@ class BoneTrans:
             bone = amt.pose.bones[self.bone_name]
             
             # If IK is enabled, the direction of the specified coordinate vector changes.
-            if self.bone_name == "Hand.L" or self.bone_name == "Hand.R" :
+            if self.bone_name == "Hand.L" or self.bone_name == "Hand.R" or \
+                self.bone_name == "Toe.L" or self.bone_name == "Toe.R":
                 bone.constraints["IK"].enabled = False
                 bpy.context.view_layer.update()
 
             matrix = mathutils.Matrix((bone.x_axis, bone.y_axis, bone.z_axis)).copy()
             bone_origin = bone.head - (bone.location @ matrix)
 
-            if self.bone_name == "Hand.L" or self.bone_name == "Hand.R" :
+            if self.bone_name == "Hand.L" or self.bone_name == "Hand.R" or \
+                self.bone_name == "Toe.L" or self.bone_name == "Toe.R":
                 bone.constraints["IK"].enabled = True
                 bpy.context.view_layer.update()
 
