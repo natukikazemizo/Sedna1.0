@@ -74,9 +74,13 @@ $\vec{B_{q}}=(\vec{W_{β}}-(\vec{W_{α}}- (\vec{B_{p}} \times A)) \times {}^t A 
 # 処理説明
 ## Enum
 * 座標の取得元：CoordinateSrc
-  * Bone, Origin
+  * ボーン：Bone
+  * 原点：Origin
 * ボーンの部位：PartOfBone
-  * Head, Tail, Location
+  * 原点を指定:Zero
+  * headの世界座標:Head
+  * tailの世界座標:Tail
+  * ローカル座標:Location
 * 四肢：Limb
   * Arm_L, Arm_R, Leg_L, Leg_R
 * 運動学：Kinematics
@@ -92,67 +96,91 @@ $\vec{B_{q}}=(\vec{W_{β}}-(\vec{W_{α}}- (\vec{B_{p}} \times A)) \times {}^t A 
   * 右腕用：ARM_PIN_R
   * 左脚用：LEG_PIN_L
   * 右脚用：LEG_PIN_R
+* 設定ファイルのフルパス：SETTING_FILE_PATH
 * FKモードに切り替えられたと判定する最小値：MIN_FK  
-* ~~座標変換対象のボーン名：trans_bone_names~~
-* 原点(Vector型で0,0,0)：ORIGIN
+* 原点(mathutils.Vector(0,0,0)：ORIGIN
 ## クラス
-* ボーン変換：BoneTransformation
-  * 四肢：Limb
-  * 座標の取得元_IK：src_IK
-  * ボーン名_IK：bone_name_IK
-  * ボーンの部位_IK：bone_part_IK
-  * 座標の取得元_FK：src_FK
-  * ボーン名_FK：bone_name_FK
-  * ボーンの部位_FK：bone_part_FK
+* 座標の元情報：SrcInfo
+  * 変数
+    * 座標の取得元：src:BoneOrigin
+    * ボーン名：name
+    * 部位：part:PartOfBone
+    * 世界座標：world_location
+  * 関数
+    * get_part_location  
+     部位に応じた座標を取得
+    * set_world_location  
+      世界座標設定
+    * get_world_location  
+     世界座標取得
+* ボーン座標変換：BoneTrans
+  * 変数
+    * ボーン名
+    * 四肢
+    * 座標の元情報_IK
+    * 座標の元情報_FK
+  * 関数
+    * set_org_location  
+      元座標設定  
+      IK用とFK用の情報を設定する
+    * get_trans_location  
+      変換後座標取得  
+      * IK/FKの切替判定  
+        元フレームと先フレームで、四肢がIK/FKがどう切り替わったか
+        判定する。
+        IK→FKかFK→IKの場合は座標変換する
+        IK→IKかFK→FKの場合は座標変換しない。
+      * 座標の取得
+        * 座標変換対象のボーンを$B$とする
+        * 座標の取得元が「原点」の場合、原点を返却する
+        * 座標の取得元が「ボーン」の場合  
+          * $B$が、"Hand.L/R"か"Toe.L/R"の場合、IKが有効なままだと座標がズレるので、IKを一時的に無効にする。  
+          * $B$のx軸とy軸とz軸から、座標変換用の行列$A$を作成する。
+          * $Bの世界座標-(Bのローカル座標\times A)$
+          で$B$の原点を求める
+          * $(変換先の世界座標 - Bの原点) \times {}^t A $ を計算し、返却する
+
+## 関数
+* check_IK_FK:IK/FK判定
+  * ボーンのローカルy座標 ＞ MIN_FKの場合、FKと判定
+  * 上記以外の場合、IKと判定
+
+* replace_keyframe:F-Curveのキーフレームの置換
+  * Armatureとボーン名を頼りにlocationのF-Cureveを探し、フレーム指定でキーフレームの値を引数の値で置換する。
 
 ## 処理の流れ
 * 変数初期化
-  * IK/FK切替ボーン辞書作成  
+  * 四肢に対するIK/FK切替ボーン辞書作成  
     ```
     {Limb.Arm_L:ARM_PIN_L, <<以下略>>}
     ```
-  * ボーン変換辞書作成
-    * trans_bone_names 全てに対して、ボーン座標クラスのインスタンスを紐づける辞書を作成する。ボーン座標クラスの初期値はベタ書き。
-       * 初期値は
-[convert_location_4_IK_FK パターン](https://docs.google.com/spreadsheets/d/1_WTIvTkg_w0k1wFJPyg4sHBb2bkfpKs7Nq4aCRMfrUs/edit?usp=sharing)
-参照
-  * 座標記録用の辞書作成
-    * ボーン名が辞書キー　値はIK用とFK用のVector2件
+  * 設定ファイルからヘッダと本体のデータ取得  
+    設定ファイルの内容は、
+    [convert_location_4_IK_FK パターン](https://docs.google.com/spreadsheets/d/1_WTIvTkg_w0k1wFJPyg4sHBb2bkfpKs7Nq4aCRMfrUs/edit?usp=sharing)参照
+  * ヘッダ行データから、列名辞書の作成
+  * 列名辞書と本体行データから、ボーン座標変換辞書を作成する。  
+    ボーン座標変換辞書は
+    Key:変換対象のボーン名
+    Value:ボーン座標変換クラスのインスタンス
 
 * 元フレームの座標記録
   * Current FrameをORG_FRAMEにする
-  * trans_bone_namesでループ
-    * trans_bone_names[i]でボーン変換辞書よりボーン変換を取得
-    * IK用の座標取得
-      * ボーン変換.座標の取得元がBoneの場合
-        * ボーン変換.ボーン名_IKを取得
-        *  座標記録用の辞書に、ボーンの部位_IKの座標を設定
-      * ボーン変換.座標の取得元がOriginの場合
-        * 座標記録用の辞書に、ORIGINを設定
-    * FK用の座標取得　→　IK用の座標取得と同様に実装するので、関数化？
-* 先フレームに変換後座標を設定
-  * Current FrameをORG_FRAME+OFFSET_FRAMEにする
-  * 四肢のIK/FK判定
-    * LimbをKey Kinematicsを値にした四肢運動学辞書を作成
-    * Limbでループ
-      * IK/FK切替ボーン辞書より、IK/FK切替判定用のボーン名を取得
-      * IK/FK切替判定用のボーン名のLocal座標のVectorの長さ＞MIN_FK　の場合、FKと判定する。
-      そうでない場合は、IKと判定し、四肢運動学辞書に設定する。
-  * trans_bone_namesでループ
-    * trans_bone_names[i]でボーン変換辞書よりボーン変換を取得
-    * IK/FK判定
-      * ボーン変換.四肢 と、四肢運動学辞書よりIK/FKを取得
-    * 移動先座標取得
-      * 座標記録用の辞書よりボーン座標を取得する。IKの場合はIK用座標を、FKの場合はFK用座標を取得する。
-    * 変換後座標設定
-      * trans_bone_names[i]で座標設定対象ボーン取得
-      * 座標設定対象ボーン.location　に、  
-        移動先座標　－　(移動前のボーンの世界座標　－　移動前のボーンのローカル座標)
-        を設定
+  * ボーン座標変換辞書のKeyでループ
+    * keyで、ボーン座標変換クラスのインスタンス取得
+    * ボーン座標変換クラスのインスタンス.元座標設定 で、IK用とFK用の情報を設定
+
+  * 元フレームの四肢のIK/FKの辞書を作成する。
+
+* 変換後の座標の反映
+  * Current FrameをORG_FRAME + OFFSETにする
+  * 先フレームの四肢のIK/FKの辞書を作成する。
+  * ボーン座標変換辞書のKeyでループ
+    * keyで、ボーン座標変換クラスのインスタンス取得
+    * ボーン座標変換クラスのインスタンス.変換後座標取得　で変換後座標を取得し、F-Cureveに反映する。
 
 * 終了処理
   * Current FrameをORG_FRAMEにする  
 
 # 制限事項
-* 作成中　コーディング時に追記予定
+* FKモードの際、手足が自由に伸びるようになっています。ですので、FKモードからIKモードに座標を変換した時に、手足が勝手に伸縮してしまいます。FKモードからIKモードに変換するさいは、FKモードのフレームであらかじめ手足が通常の長さになるようにポーズ修正しておくと、手足の勝手な伸縮が小さくなります。
 
