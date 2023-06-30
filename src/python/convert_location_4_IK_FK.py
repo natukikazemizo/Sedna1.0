@@ -75,7 +75,8 @@ ARMATURE_NAME = "Armature.DDE"
 # CSVファイルの列名定義
 
 # 処理対象Frame
-ORG_FRAME = 2276
+#ORG_FRAME = 2276
+ORG_FRAME = 2350
 FRAME_OFFSET = 1
 
 # IK/FK切替コントロールボーン名
