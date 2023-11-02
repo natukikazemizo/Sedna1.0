@@ -25,6 +25,7 @@ RESULT_PATH = "//..\..\..\..\\renderResults\\DDE#0050\\DDE0050_"
 FRAME_STEP = 1
 FPS = 24
 CAMERA = "Camera.Main"
+SCENE_NAME = "root"
 
 def hide_collection(collection_name, hide):
     bpy.data.collections[collection_name].hide_viewport = hide
@@ -45,10 +46,10 @@ def render(marker_name, frames, show_collections, hide_collections):
     bpy.context.scene.frame_start = frame_start
     if TEST_MODE:
         bpy.context.scene.frame_end = frame_start
-        bpy.data.scenes[marker_name].render.filepath = TEST_PATH
+        bpy.data.scenes[SCENE_NAME].render.filepath = TEST_PATH
     else:
         bpy.context.scene.frame_end = frame_end
-        bpy.data.scenes[marker_name].render.filepath = RESULT_PATH
+        bpy.data.scenes[SCENE_NAME].render.filepath = RESULT_PATH
 
     bpy.context.scene.camera = bpy.data.objects[CAMERA]
     print("#### Render Start  #### " + marker_name + " frame:" + str(frame_start) + \
@@ -77,8 +78,8 @@ bpy.context.scene.render.resolution_percentage = 100
 
 
 # 0000 Init 
-render("0000_Init", 0, [], ["FeatureTree", "Paintbrush", "PaintPlates", "WarnedSRC", \
-    "VCS", "RelatedDocuments", "HighlightedSourceCode", "SyncSrcAndTree"])
+#render("0000_Init", 0, [], ["FeatureTree", "Paintbrush", "PaintPlates", "WarnedSRC", \
+#    "VCS", "RelatedDocuments", "HighlightedSourceCode", "SyncSrcAndTree"])
 # 0010 N -> Rejected?
 # render("0010_N", 300, [], [])
 # 0020 N call DDE
@@ -91,8 +92,9 @@ render("0000_Init", 0, [], ["FeatureTree", "Paintbrush", "PaintPlates", "WarnedS
 # render("0050_Highlighted_SRC", 300, ["HighlightedSourceCode"], ["HighlightedSourceCode"])
 # 0060 SVN
 # render("0060_SVN", 500, ["SVN","vcs"], ["SVN","vcs"])
-# 0070 Emotional Exception
-# render("0070_EmotionalException", 300, [], [])
+# 0070 Call tree & editor
+# 0070_CallTreeAndEditor
+render("0070_CallTreeAndEditor", 300, [], ["VCS.001"])
 # 0080 Sync Code And Tree
 # render("0080_SyncCodeTree", 300, ["SyncSrcAndTree"], ["SyncSrcAndTree"])
 # 0090 Warned SRC
