@@ -2,10 +2,10 @@
 ## Blenderを使用した自主制作アニメ用のスクリプトとアドオン
 
 ## 必要環境
-* Blender 3.5.0 が動作する環境
+* Blender 4.0.0 が動作する環境
 
 ## 開発環境  
-* Blender 3.5.0(最新安定板を使用)
+* Blender 4.0.0(最新安定版を随時導入中)
 * OS:Windows11
 * CPU:Intel(R) Core(TM)i9-9900K CPU @ 3.60GHz
 * MEMORY:64 GB
