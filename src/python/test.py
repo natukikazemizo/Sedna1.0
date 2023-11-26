@@ -1,1 +1,0 @@
-print("HOGE PIYO PIYO PIYO")
