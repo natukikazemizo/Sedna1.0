@@ -1,22 +1,22 @@
-﻿# Nのツリー
-# N
-# 体 body
-## 運動器 musculoskeletal_system
-## 感覚器 sensory_nervous_system
-## 呼吸器 respiratory_system
-## 循環器 circulatory_system
-## 消化器 digestive_system
-## 神経系 nervous_system
-## 生殖器 reproductive_system
-## 内分泌器 endocrine system
-## 泌尿器 urinary system
+﻿# Nのソースコード格納フォルダのツリー
+N  
+body 体  
+musculoskeletal_system 運動器  
+sensory_nervous_system 感覚器  
+respiratory_system 呼吸器  
+circulatory_system 循環器  
+digestive_system 消化器  
+nervous_system 神経系  
+reproductive_system 生殖器  
+endocrine system 内分泌器  
+urinary system 泌尿器  
 
-# 記憶 memory
-## 短期記憶 short-term_memory
-## 作動記憶 working_memory
-## 長期記憶 long-term_memory
+memory 記憶  
+short-term_memory 短期記憶  
+working_memory 作動記憶  
+long-term_memory 長期記憶  
 
-## 意識 consciousness
-## 前意識 preconscious
-## 個人的無意識 personal_unconscious
-## 集合的無意識 collective_unconscious
+consciousness 意識  
+preconscious 前意識  
+personal_unconscious 個人的無意識  
+collective_unconscious 集合的無意識  
