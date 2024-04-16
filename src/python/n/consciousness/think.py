@@ -4,16 +4,14 @@
 #
 # 2027.09.10 N-mizo(Natukikazemizo)
 
-import os
-import utils_log
 import math
 
-# init logger
-global logger
-logger = utils_log.Util_Log(os.path.basename(__file__))
+class Think:
+    def __init__(self):
+        # hoge
+        self.hoge ="piyo"
 
-logger.start()
+    def think(self):
 
-    
-
-logger.end()
+    def __del__(self):
+        # piyo
