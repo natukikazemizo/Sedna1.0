@@ -34,6 +34,7 @@ imagination.py
 input.py  
 judgment.py  
 output.py  
+prediction.py  
 think.py  
 unconscious_automatic_intervention.py  
 
