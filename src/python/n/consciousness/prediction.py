@@ -9,9 +9,10 @@ import math
 class Prediction:
     def __init__(self):
         # hoge
-        self.hoge ="piyo"
+        self.accuracy = 0.5
 
-    def think(self):
+    def prediction(self, premise):
+        return premise * self.accuracy
 
     def __del__(self):
-        # piyo
+        self.accuracy = 0.5

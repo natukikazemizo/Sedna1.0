@@ -8,10 +8,11 @@ import math
 
 class Imagination:
     def __init__(self):
-        # hoge
-        self.hoge ="piyo"
+        self.strength = 0
 
-    def think(self):
+    def imagine(self, info):
+        info = info * (self.strength + 1)
 
     def __del__(self):
-        # piyo
+        self.strength = 0
+

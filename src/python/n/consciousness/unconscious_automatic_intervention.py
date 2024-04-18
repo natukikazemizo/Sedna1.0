@@ -8,10 +8,11 @@ import math
 
 class UnconsciousIntervention:
     def __init__(self):
-        # hoge
-        self.hoge ="piyo"
+        self.strength = 0
 
-    def think(self):
+    def intervention(self):
+        if self.strength > 16:
+            print("Start interrupt")
 
     def __del__(self):
-        # piyo
+        self.strength = 0

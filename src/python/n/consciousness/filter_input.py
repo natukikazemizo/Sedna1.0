@@ -8,10 +8,11 @@ import math
 
 class FilterInput:
     def __init__(self):
-        # hoge
-        self.hoge ="piyo"
+        self.strength = 0
 
-    def think(self):
+    def filter(self, info):
+        if info.harmfulness > self.strength:
+            info = 0
 
     def __del__(self):
-        # piyo
+        self.strength = 0

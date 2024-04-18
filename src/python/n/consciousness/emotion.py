@@ -8,10 +8,12 @@ import math
 
 class Emotion:
     def __init__(self):
-        # hoge
-        self.hoge ="piyo"
+        self.state = (0, 0, 0)
+        self.range = 0
 
-    def think(self):
+    def emote(self):
+        self.range += 0.1
 
     def __del__(self):
-        # piyo
+        self.state = (0, 0, 0)
+        self.range = 0

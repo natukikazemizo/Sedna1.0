@@ -8,10 +8,10 @@ import math
 
 class Output:
     def __init__(self):
-        # hoge
-        self.hoge ="piyo"
+        self.fatigue = 0
 
-    def think(self):
+    def output(self):
+        self.fatigue += 1
 
     def __del__(self):
-        # piyo
+        self.fatigue = 0

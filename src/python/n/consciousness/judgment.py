@@ -8,10 +8,10 @@ import math
 
 class Judgment:
     def __init__(self):
-        # hoge
-        self.hoge ="piyo"
+        self.prejudice = 0
 
-    def think(self):
+    def judge(self, value1, value2):
+        return value1 > (value2 + self.prejudice)
 
     def __del__(self):
-        # piyo
+        self.prejudice = 0
