@@ -10,9 +10,8 @@ class FilterInput:
     def __init__(self):
         self.strength = 0
 
-    def filter(self, info):
-        if info.harmfulness > self.strength:
-            info = 0
+    def filter(self, temporary_memory):
+        return temporary_memory
 
     def __del__(self):
         self.strength = 0

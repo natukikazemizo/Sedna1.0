@@ -11,8 +11,9 @@ class Emotion:
         self.state = (0, 0, 0)
         self.range = 0
 
-    def emote(self):
+    def emote(self, temporary_memory):
         self.range += 0.1
+        return temporary_memory
 
     def __del__(self):
         self.state = (0, 0, 0)

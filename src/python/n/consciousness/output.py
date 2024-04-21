@@ -10,7 +10,7 @@ class Output:
     def __init__(self):
         self.fatigue = 0
 
-    def output(self):
+    def output(self, action, temporary_memory):
         self.fatigue += 1
 
     def __del__(self):

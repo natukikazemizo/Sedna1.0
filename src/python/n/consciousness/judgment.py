@@ -10,8 +10,9 @@ class Judgment:
     def __init__(self):
         self.prejudice = 0
 
-    def judge(self, value1, value2):
-        return value1 > (value2 + self.prejudice)
+    def judge(self, temporary_memory):
+        action = None
+        return action, temporary_memory
 
     def __del__(self):
         self.prejudice = 0

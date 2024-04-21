@@ -10,8 +10,8 @@ class Imagination:
     def __init__(self):
         self.strength = 0
 
-    def imagine(self, info):
-        info = info * (self.strength + 1)
+    def imagine(self, temporary_memory):
+        return temporary_memory
 
     def __del__(self):
         self.strength = 0

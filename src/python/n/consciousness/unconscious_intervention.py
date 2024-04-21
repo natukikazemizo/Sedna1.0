@@ -10,9 +10,11 @@ class UnconsciousIntervention:
     def __init__(self):
         self.strength = 0
 
-    def intervention(self):
+    def intervention(self, temporary_memory):
         if self.strength > 16:
-            print("Start interrupt")
+            return True
+        else:
+            return False
 
     def __del__(self):
         self.strength = 0

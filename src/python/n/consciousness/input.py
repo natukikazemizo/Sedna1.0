@@ -4,14 +4,14 @@
 #
 # 2027.09.10 N-mizo(Natukikazemizo)
 
-import math
+
 
 class Input:
     def __init__(self):
-        self.vessel = {}
+        self.temporary_memory = {}
 
-    def input(self, key, info):
-        self.vessel[key] = info
+    def input(self, info):
+        return self.temporary_memory
 
     def __del__(self):
-        self.vessel = {}
+        self.temporary_memory = {}

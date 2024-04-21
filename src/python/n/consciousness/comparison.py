@@ -11,8 +11,8 @@ class Comparison:
         # hoge
         self.val = 0
 
-    def compare(self, val1, val2):
-        self.val = val1 > val2
+    def compare(self, temporary_memory):
+        return temporary_memory
 
     def __del__(self):
         self.val = 0

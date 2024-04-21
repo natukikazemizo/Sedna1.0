@@ -13,5 +13,8 @@ class Calculation:
     def add(self, val):
         self.num += val
 
+    def calculate(self, temporary_memory):
+        return temporary_memory
+
     def __del__(self):
         self.num = 0

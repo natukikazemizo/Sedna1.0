@@ -11,8 +11,8 @@ class Prediction:
         # hoge
         self.accuracy = 0.5
 
-    def prediction(self, premise):
-        return premise * self.accuracy
+    def prediction(self, temporary_memory):
+        return temporary_memory
 
     def __del__(self):
         self.accuracy = 0.5
