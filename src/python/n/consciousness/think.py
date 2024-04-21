@@ -7,11 +7,15 @@
 import math
 
 class Think:
-    def __init__(self):
-        self.concentration = 128
+    def __init__(self, concentration, delta):
+        self.concentration = concentration
 
-    def think(self):
-        self.concentration -= 1
+    def think(self, trigger):
+        while self.concentration > 0:
+            # Thinking consumes concentration.
+            self.concentration -= self.delta
+        
 
     def __del__(self):
-        self.concentration = 128
+        # freedom from thinking
+        self.concentration = 0
