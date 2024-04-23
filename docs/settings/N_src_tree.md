@@ -1,4 +1,5 @@
 ﻿# Nのソースコード格納フォルダのツリー
+<pre>
 📁┐N  
   ├─📁┐body 体  
   │   ├─📁 musculoskeletal_system 運動器  
@@ -15,6 +16,7 @@
   │   ├─📁 working_memory 作動記憶  
   │   └─📁 long-term_memory 長期記憶  
   └─📁┐consciousness 意識  
-      ├─📁 preconscious 前意識  
-      ├─📁 personal_unconscious 個人的無意識  
-      └─📁 collective_unconscious 集合的無意識  
+       ├─📁 preconscious 前意識  
+       ├─📁 personal_unconscious 個人的無意識  
+       └─📁 collective_unconscious 集合的無意識  
+</pre>
