@@ -9,8 +9,8 @@
 │ ├─📁digestive_system 消化器  
 │ ├─📁nervous_system 神経系  
 │ ├─📁reproductive_system 生殖器  
-│ ├─📁endocrine system 内分泌器  
-│ └─📁urinary system 泌尿器  
+│ ├─📁endocrine_system 内分泌器  
+│ └─📁urinary_system 泌尿器  
 ├─📁memory 記憶  
 │ ├─📁 short-term_memory 短期記憶  
 │ ├─📁 working_memory 作動記憶  
