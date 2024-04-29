@@ -1,0 +1,27 @@
+﻿2035/04/07 12:25:53.247 [Info] N lunch finished.: N 昼食終了。
+2035/04/07 12:30:11.259 [Info] DDE lunch finished.: DDE 昼食終了。
+2035/04/07 12:33:08.465 [Info] N start cleaning up the dishes.: N 食器片づけ開始。
+2035/04/07 12:47:22.905 [Info] N finished cleaning up the dishes.: N 食器片づけ終了。
+2035/04/07 12:50:31.831 [Info] N modeling work started.: N モデリング作業着手。
+2035/04/07 12:53:31.759 [Info] DDE interrupts N's work: DDEがNの作業に割り込み。
+2035/04/07 12:54:02.138 [Info] DDE confirms the dinner menu with N.: DDEはNに夕食メニューを確認。
+2035/04/07 12:55:50.217 [Info] N proposes a dinner menu to DDE.: NはDDEに夕食メニューを提案。
+2035/04/07 12:56:01.510 [Info] Detecting DDE frustration.: DDEの欲求不満を検知。
+2035/04/07 12:57:00.170 [Warning!] DDE starts debugging N.: DDEはNのデバッグを開始。
+2035/04/07 12:57:30.323 [Warning!] DDE accesses the source of N's consciousness.: DDEはNの意識のソースにアクセス。
+2035/04/07 12:58:30.224 [Warning!] DDE set breakpoint in N's think.py: DDEはNのthink.pyにブレークポイント設定。
+2035/04/07 12:59:00.803 [Warning!] N paused.: Nは一時停止した。
+2035/04/07 12:59:30.194 [Warning!] DDE accessed N's memories.: DDEはNの記憶にアクセスした。
+2035/04/07 13:00:00.732 [Warning!] DDE viewed N's dinner history memory.: DDEはNの夕食履歴記憶を閲覧した。
+2035/04/07 13:00:01.259 [Caution!!] DDE altered N's memory of the dinner on 2035/03/31.: DDEはNの2035/03/31の夕食記憶を改竄した。
+2035/04/07 13:00:02.564 [Caution!!] DDE altered N's memory of the dinner on 2035/04/01.: DDEはNの2035/04/01の夕食記憶を改竄した。
+2035/04/07 13:00:03.415 [Caution!!] DDE altered N's memory of the dinner on 2035/04/02.: DDEはNの2035/04/02の夕食記憶を改竄した。
+2035/04/07 13:00:04.196 [Caution!!] DDE altered N's memory of the dinner on 2035/04/03.: DDEはNの2035/04/03の夕食記憶を改竄した。
+2035/04/07 13:00:05.505 [Caution!!] DDE altered N's memory of the dinner on 2035/04/04.: DDEはNの2035/04/04の夕食記憶を改竄した。
+2035/04/07 13:00:06.936 [Caution!!] DDE altered N's memory of the dinner on 2035/04/05.: DDEはNの2035/04/05の夕食記憶を改竄した。
+2035/04/07 13:00:07.676 [Caution!!] DDE altered N's memory of the dinner on 2035/04/06.: DDEはNの2035/04/06の夕食記憶を改竄した。
+2035/04/07 13:01:12.240 [Danger!!!] DDE accessed the management area of the OS.: DDEはOSの管理領域にアクセスした。
+2035/04/07 13:02:09.022 [Danger!!!] DDE accessed OS logs.: DDEはOSログにアクセスした。
+2035/04/07 13:03:09.997 [Help!!!!] DDE forced the OS logger to stop.: DDEはOSロガーを強制停止した。
+2035/04/07 13:03:15.361 [Help!!!!] DDE deleted OS logs from 12:56:01.234 to 13:03:39.242.: DDEは12:56:01.234から13:03:39.242のOSログを削除した。
+2035/04/07 13:03:16.586 [Info] N interrupted DDE's actions.: NはDDEの行動に割り込んだ。
