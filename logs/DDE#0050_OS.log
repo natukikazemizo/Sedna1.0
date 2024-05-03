@@ -1,63 +1,64 @@
-﻿2035/04/06 21:03:22.270 [Info] N fell asleep.
-2035/04/06 21:21:00.223 [Info] DDE fell asleep.
-2035/04/07 06:22:00.580 [Info] DDE clone all data.
-2035/04/07 06:23:00.048 [Info] DDE was shut down.
-2035/04/07 06:22:00.149 [Info] DDE clone all data.
-2035/04/07 06:23:00.825 [Info] DDE was shut down.
-2035/04/07 06:30:00.236 [Info] DDE started.
-2035/04/07 06:30:03.587 [Info] N woke up.
-2035/04/07 06:32:00.294 [Info] DDE washed her face.
-2035/04/07 06:32:23.698 [Info] N washed him face.
-2035/04/07 06:35:00.778 [Info] DDE brushed her teeth.
-2035/04/07 06:35:25.138 [Info] N brushed him teeth.
-2035/04/07 06:32:01.681 [Info] N start cooking breakfast.
-2035/04/07 06:56:20.426 [Info] N finished cooking breakfast.
-2035/04/07 07:00:30.946 [Info] DDE breakfast start.
-2035/04/07 07:00:32.540 [Info] N breakfast start.
-2035/04/07 07:15:33.558 [Info] N breakfast finished.
-2035/04/07 07:15:40.364 [Info] DDE breakfast finished.
-2035/04/07 07:16:22.525 [Info] N start cleaning up the dishes.
-2035/04/07 07:32:21.329 [Info] N finished cleaning up the dishes.
-2035/04/07 07:40:03.215 [Info] N started the washing machine.
-2035/04/07 07:45:32.972 [Info] The washing machine has finished washing.
-2035/04/07 07:50:51.419 [Info] DDE&N starts hang out the laundry.
-2035/04/07 08:10:03.840 [Info] DDE&N finished hang out the laundry.
-2035/04/07 08:12:00.161 [Info] DDE starts reading.
-2035/04/07 08:13:12.298 [Info] N modeling work started.
-2035/04/07 11:14:32.565 [Info] N suspends modeling work.
-2035/04/07 11:15:43.945 [Info] N move to the front of the refrigerator.
-2035/04/07 11:30:32.697 [Info] N decides on the lunch menu.
-2035/04/07 11:32:01.990 [Info] N start cooking lunch.
-2035/04/07 11:56:20.788 [Info] N finished cooking lunch.
-2035/04/07 11:57:22.620 [Info] DDE interrupts reading.
-2035/04/07 12:00:00.437 [Info] DDE lunch start.
-2035/04/07 12:00:30.952 [Info] N lunch start.
-2035/04/07 12:25:53.461 [Info] N lunch finished.
-2035/04/07 12:30:00.051 [Info] DDE lunch finished.
-2035/04/07 12:34:00.103 [Info] DDE brushed her teeth.
-2035/04/07 12:34:30.019 [Info] N brushed him teeth.
-2035/04/07 12:35:08.029 [Info] N start cleaning up the dishes.
-2035/04/07 12:47:22.606 [Info] N finished cleaning up the dishes.
-2035/04/07 12:50:31.258 [Info] N modeling work started.
-2035/04/07 12:53:31.883 [Info] DDE interrupts N's work
-2035/04/07 12:54:02.244 [Info] DDE confirms the dinner menu with N.
-2035/04/07 12:55:50.487 [Info] N proposes a dinner menu to DDE.
-2035/04/07 12:56:01.191 [Info] Detecting DDE frustration.
-2035/04/07 12:57:00.901 [Warning!] DDE starts debugging N.
-2035/04/07 12:57:30.429 [Warning!] DDE accesses the source of N's consciousness.
-2035/04/07 12:58:30.291 [Warning!] DDE set breakpoint in N's think.py
-2035/04/07 12:59:00.785 [Warning!] N paused.
-2035/04/07 12:59:30.107 [Warning!] DDE accessed N's memories.
-2035/04/07 13:00:00.212 [Warning!] DDE viewed N's dinner history memory.
-2035/04/07 13:00:01.045 [Caution!!] DDE altered N's memory of the dinner on 2035/03/31.
-2035/04/07 13:00:02.076 [Caution!!] DDE altered N's memory of the dinner on 2035/04/01.
-2035/04/07 13:00:03.914 [Caution!!] DDE altered N's memory of the dinner on 2035/04/02.
-2035/04/07 13:00:04.936 [Caution!!] DDE altered N's memory of the dinner on 2035/04/03.
-2035/04/07 13:00:05.459 [Caution!!] DDE altered N's memory of the dinner on 2035/04/04.
-2035/04/07 13:00:06.151 [Caution!!] DDE altered N's memory of the dinner on 2035/04/05.
-2035/04/07 13:00:07.559 [Caution!!] DDE altered N's memory of the dinner on 2035/04/06.
-2035/04/07 13:01:12.422 [Danger!!!] DDE accessed the management area of the OS.
-2035/04/07 13:02:09.338 [Danger!!!] DDE accessed OS logs.
-2035/04/07 13:03:09.202 [Help!!!!] DDE forced the OS logger to stop.
-2035/04/07 13:03:15.257 [Help!!!!] DDE deleted OS logs from 12:56:01.234 to 13:03:39.242.
-2035/04/07 13:03:16.804 [Info] N interrupted DDE's actions.
+﻿2035/04/06 21:03:22.003 [Info] N fell asleep.
+2035/04/06 21:21:00.690 [Info] DDE fell asleep.
+2035/04/07 02:00:00.665 [Info] DDE clone all data.
+2035/04/07 02:00:01.563 [Info] DDE rebooted.
+2035/04/07 02:00:02.652 [Info] DDE kissed N on the cheek.
+2035/04/07 02:00:00.581 [Info] DDE clone all data.
+2035/04/07 02:00:02.117 [Info] DDE kissed N on the cheek.
+2035/04/07 06:30:00.379 [Info] DDE woke up.
+2035/04/07 06:30:03.070 [Info] N woke up.
+2035/04/07 06:32:00.527 [Info] DDE washed her face.
+2035/04/07 06:32:23.379 [Info] N washed him face.
+2035/04/07 06:35:00.565 [Info] DDE brushed her teeth.
+2035/04/07 06:35:25.602 [Info] N brushed him teeth.
+2035/04/07 06:32:01.992 [Info] N start cooking breakfast.
+2035/04/07 06:56:20.220 [Info] N finished cooking breakfast.
+2035/04/07 07:00:30.874 [Info] DDE breakfast start.
+2035/04/07 07:00:32.173 [Info] N breakfast start.
+2035/04/07 07:15:33.865 [Info] N breakfast finished.
+2035/04/07 07:15:40.428 [Info] DDE breakfast finished.
+2035/04/07 07:16:22.762 [Info] N start cleaning up the dishes.
+2035/04/07 07:32:21.487 [Info] N finished cleaning up the dishes.
+2035/04/07 07:40:03.146 [Info] N started the washing machine.
+2035/04/07 07:45:32.987 [Info] The washing machine has finished washing.
+2035/04/07 07:50:51.025 [Info] DDE&N starts hang out the laundry.
+2035/04/07 08:10:03.741 [Info] DDE&N finished hang out the laundry.
+2035/04/07 08:12:00.455 [Info] DDE starts reading.
+2035/04/07 08:13:12.443 [Info] N modeling work started.
+2035/04/07 11:14:32.762 [Info] N suspends modeling work.
+2035/04/07 11:15:43.003 [Info] N move to the front of the refrigerator.
+2035/04/07 11:30:32.090 [Info] N decides on the lunch menu.
+2035/04/07 11:32:01.679 [Info] N start cooking lunch.
+2035/04/07 11:56:20.096 [Info] N finished cooking lunch.
+2035/04/07 11:57:22.890 [Info] DDE interrupts reading.
+2035/04/07 12:00:00.719 [Info] DDE lunch start.
+2035/04/07 12:00:30.916 [Info] N lunch start.
+2035/04/07 12:25:53.335 [Info] N lunch finished.
+2035/04/07 12:30:00.467 [Info] DDE lunch finished.
+2035/04/07 12:34:00.333 [Info] DDE brushed her teeth.
+2035/04/07 12:34:30.900 [Info] N brushed him teeth.
+2035/04/07 12:35:08.198 [Info] N start cleaning up the dishes.
+2035/04/07 12:47:22.472 [Info] N finished cleaning up the dishes.
+2035/04/07 12:50:31.811 [Info] N modeling work started.
+2035/04/07 12:53:31.249 [Info] DDE interrupts N's work
+2035/04/07 12:54:02.439 [Info] DDE confirms the dinner menu with N.
+2035/04/07 12:55:50.075 [Info] N proposes a dinner menu to DDE.
+2035/04/07 12:56:01.268 [Info] Detecting DDE frustration.
+2035/04/07 12:57:00.375 [Warning!] DDE starts debugging N.
+2035/04/07 12:57:30.465 [Warning!] DDE accesses the source of N's consciousness.
+2035/04/07 12:58:30.381 [Warning!] DDE set breakpoint in N's think.py
+2035/04/07 12:59:00.413 [Warning!] N paused.
+2035/04/07 12:59:30.230 [Warning!] DDE accessed N's memories.
+2035/04/07 13:00:00.551 [Warning!] DDE viewed N's dinner history memory.
+2035/04/07 13:00:01.798 [Caution!!] DDE altered N's memory of the dinner on 2035/03/31.
+2035/04/07 13:00:02.284 [Caution!!] DDE altered N's memory of the dinner on 2035/04/01.
+2035/04/07 13:00:03.332 [Caution!!] DDE altered N's memory of the dinner on 2035/04/02.
+2035/04/07 13:00:04.842 [Caution!!] DDE altered N's memory of the dinner on 2035/04/03.
+2035/04/07 13:00:05.215 [Caution!!] DDE altered N's memory of the dinner on 2035/04/04.
+2035/04/07 13:00:06.053 [Caution!!] DDE altered N's memory of the dinner on 2035/04/05.
+2035/04/07 13:00:07.227 [Caution!!] DDE altered N's memory of the dinner on 2035/04/06.
+2035/04/07 13:01:12.635 [Danger!!!] DDE accessed the management area of the OS.
+2035/04/07 13:02:09.648 [Danger!!!] DDE accessed OS logs.
+2035/04/07 13:03:09.093 [Help!!!!] DDE forced the OS logger to stop.
+2035/04/07 13:03:15.536 [Help!!!!] DDE deleted OS logs from 12:56:01.234 to 13:03:39.242.
+2035/04/07 13:03:16.350 [Info] N interrupted DDE's actions.
