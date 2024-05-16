@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<properties>
+    <rendering>
+        <frame>
+            <step>1</step>
+            <fps>24</fps>
+        </frame>
+        <enable>True</enable>
+        <resolution_percentage>100</resolution_percentage>
+        <camera>Camera.Main</camera>
+        <scene>root</scene>
+        <screen>Render</screen>
+    </rendering>
+    <test>
+        <enable>False</enable>
+        <print>
+            <count>1</count>
+        </print>
+        <output>
+            <path>//..\..\..\..\\renderResults\\DDE#0050_Test\\Test_</path>
+        </output>
+    </test>
+    <production>
+        <output>
+            <path>//..\..\..\..\\renderResults\\DDE#0050\\DDE0050_</path>
+        </output>
+    </production>
+</properties>
+
+
