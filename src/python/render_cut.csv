@@ -1,2 +1,2 @@
-start_marker_name, end_marker_name, show_collections, hide_collections
-"Check the dinner menu", "END_Check the dinner menu", [], []
+start_marker_name,end_marker_name,show_collections,hide_collections
+"Check the dinner menu","END_Check the dinner menu",[],[]

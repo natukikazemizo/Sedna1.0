@@ -9,7 +9,7 @@
         <resolution_percentage>100</resolution_percentage>
         <camera>Camera.Main</camera>
         <scene>root</scene>
-        <screen>Render</screen>
+        <workspace>Render4Skip</workspace>
     </rendering>
     <test>
         <enable>False</enable>
