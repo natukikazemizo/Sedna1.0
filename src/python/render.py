@@ -73,9 +73,9 @@ def render(row:list[str], rendering,  test, production):
 print("######## START ########")
 
 # Read XML
-tree = ET.parse('country.xml')
+tree = ET.parse(bpy.path.abspath("//") + XML_PATH)
 root = tree.getroot()
-rendering = root.find("render")
+rendering = root.find("rendering")
 test = root.find("test")
 production = root.find("production")
 
@@ -88,7 +88,7 @@ bpy.context.scene.render.resolution_percentage = \
 
 # Read CSV and render
 
-with open(CSV_PATH) as file:
+with open(bpy.path.abspath("//") + CSV_PATH) as file:
     reader = csv.reader(file)
     count = 0
     for row in reader:
