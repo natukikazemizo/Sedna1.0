@@ -16,6 +16,7 @@ import csv
 import os
 import math
 import xml.etree.ElementTree as ET
+import setuptools
 
 # CONSTANTS
 # 定数
@@ -23,10 +24,18 @@ XML_PATH = "render_settings.xml"
 CSV_PATH = "render_cut.csv"
 
 def hide_collection(collection_name, hide):
+    """
+    show/hide collections
+    Collectionの表示／非表示
+    """
     bpy.data.collections[collection_name].hide_viewport = hide
     bpy.data.collections[collection_name].hide_render = hide
 
-def render(row:list[str], rendering,  test, production):
+def render(row:list[str], rendering,  test):
+    """
+    Render for each cut
+    カット単位レンダー
+    """
     if row[0] not in bpy.context.scene.timeline_markers:
         print("INFO: start marker not found:" + row[0])
         return
@@ -35,7 +44,7 @@ def render(row:list[str], rendering,  test, production):
         return
 
     frame_start = bpy.context.scene.timeline_markers[row[0]].frame
-    if bool(test.find("enable").text):
+    if setuptools.distutils.util.strtobool(test.find("enable").text):
         frame_end = frame_start + int(test.find("print").find("count").text) - 1
     else :
         frame_end = bpy.context.scene.timeline_markers[row[1]].frame
@@ -43,23 +52,16 @@ def render(row:list[str], rendering,  test, production):
     for collection_name in eval(row[2]):
         hide_collection(collection_name, False)
     
-    bpy.context.scene.render.fps = int(rendering.find("frame").find("fps").text)
-    bpy.context.scene.frame_step = int(rendering.find("frame").find("step").text)
     bpy.context.scene.frame_start = frame_start
-    if bool(test.find("enable").text):
-        bpy.context.scene.frame_end = frame_start
-        bpy.data.scenes[rendering.find("scene").text].render.filepath = \
-            test.find("output").find("path").text
-    else:
-        bpy.context.scene.frame_end = frame_end
-        bpy.data.scenes[rendering.find("scene").text].render.filepath = \
-            production.find("output").find("path").text
+    bpy.context.scene.frame_end = frame_end
 
-    bpy.context.scene.camera = bpy.data.objects[rendering.find("camera").text]
+    bpy.context.scene.render.resolution_percentage = \
+        int(rendering.find("resolution_percentage").text)
+
     print("#### Render Start  #### " + row[0] + " frame:" + str(frame_start) + \
         "-" +str(frame_end))
         
-    if bool(rendering.find("enable").text):
+    if setuptools.distutils.util.strtobool(rendering.find("enable").text):
         bpy.ops.render.render(animation=True)
 
     for collection_name in eval(row[3]):
@@ -82,16 +84,26 @@ rendering = root.find("rendering")
 test = root.find("test")
 production = root.find("production")
 
+# Render common settings
+# レンダー共通設定
 workspace_name = rendering.find("workspace").text
 if bpy.data.workspaces.find(workspace_name) != -1:
     bpy.context.window.workspace = \
         bpy.data.workspaces[workspace_name]
 
-bpy.context.scene.render.resolution_percentage = \
-    int(rendering.find("resolution_percentage").text)
+bpy.context.scene.render.fps = int(rendering.find("frame").find("fps").text)
+bpy.context.scene.frame_step = int(rendering.find("frame").find("step").text)
+bpy.context.scene.camera = bpy.data.objects[rendering.find("camera").text]
 
-# Read CSV and render
-# CSVファイル読み込みとレンダー
+if setuptools.distutils.util.strtobool(test.find("enable").text):
+    bpy.data.scenes[rendering.find("scene").text].render.filepath = \
+        test.find("output").find("path").text
+else:
+    bpy.data.scenes[rendering.find("scene").text].render.filepath = \
+        production.find("output").find("path").text
+
+# Load CSV file and render each cut
+# CSVファイル読み込みと、カット毎レンダー
 
 with open(bpy.path.abspath("//") + CSV_PATH) as file:
     reader = csv.reader(file)
@@ -100,7 +112,7 @@ with open(bpy.path.abspath("//") + CSV_PATH) as file:
         count+=1
         # Skip Title row.
         if count > 1:
-            render(row, rendering, test, production)
+            render(row, rendering, test)
 
 
 print("######## END   ########")
