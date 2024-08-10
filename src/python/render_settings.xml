@@ -22,7 +22,7 @@
     </test>
     <production>
         <output>
-            <path>//..\..\..\..\\renderResults\\DDE#0050\\DDE0050_</path>
+            <path>//..\..\..\..\\renderResults\\DDE#0050_Beta\\DDE0050_</path>
         </output>
     </production>
 </properties>
