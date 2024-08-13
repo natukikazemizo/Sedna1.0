@@ -66,7 +66,7 @@ class Scene_01_btn(bpy.types.Operator):
    
     def execute(self,context):
         # 010_Check the dinner menu
-        set_frame_range(400, 962)
+        set_frame_range(self, 400, 962)
    
         return {'FINISHED'}
 
@@ -77,7 +77,7 @@ class Scene_02_btn(bpy.types.Operator):
    
    def execute(self,context):
         # 020_Connect N
-        set_frame_range(1200, 1745)
+        set_frame_range(self, 1200, 1745)
    
         return {'FINISHED'}
 
@@ -88,7 +88,7 @@ class Scene_03_btn(bpy.types.Operator):
    
    def execute(self,context):
         # 030_debugging N
-        set_frame_range(2000, 2480)
+        set_frame_range(self, 2000, 2480)
    
         return {'FINISHED'}
 
@@ -99,7 +99,7 @@ class Scene_04_btn(bpy.types.Operator):
    
    def execute(self,context):
         # 040_N's memory tampering
-        set_frame_range(2800, 3821)
+        set_frame_range(self, 2800, 3821)
    
         return {'FINISHED'}
 
@@ -110,7 +110,7 @@ class Scene_05_btn(bpy.types.Operator):
    
    def execute(self,context):
         # 050_DDE penetrates the kernel
-        set_frame_range(4200, 4990)
+        set_frame_range(self, 4200, 4990)
    
         return {'FINISHED'}
 
@@ -121,12 +121,11 @@ class Scene_06_btn(bpy.types.Operator):
    
     def execute(self,context):
         # 060_N appears
-        set_frame_range(5300, 6460)
+        set_frame_range(self, 5300, 6460)
    
         return {'FINISHED'}
 
 def register():
-    bpy.utils.register_module(__name__)
     bpy.utils.register_class(Render_range_Panel)
     bpy.utils.register_class(Scene_01_btn)
     bpy.utils.register_class(Scene_02_btn)
@@ -137,7 +136,13 @@ def register():
 
 
 def unregister():
-    bpy.utils.unregister_module(__name__)
+    bpy.utils.unregister_class(Scene_01_btn)
+    bpy.utils.unregister_class(Scene_02_btn)
+    bpy.utils.unregister_class(Scene_03_btn)
+    bpy.utils.unregister_class(Scene_04_btn)
+    bpy.utils.unregister_class(Scene_05_btn)
+    bpy.utils.unregister_class(Scene_06_btn)
+    bpy.utils.unregister_class(Render_range_Panel)
 
 
 if __name__ == "__main__":
