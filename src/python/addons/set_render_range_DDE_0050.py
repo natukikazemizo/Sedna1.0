@@ -38,9 +38,18 @@ bl_info = {
     "category" : "3D View"
 }
 
+def toggle_hide(self, object_name):
+    obj = bpy.data.objects[object_name]
+    if obj.hide_get():
+        obj.hide_set(False)
+    else:
+        obj.hide_set(True)
+
+
 def set_frame_range(self, frame_start, frame_end):
     bpy.context.scene.frame_start = frame_start
     bpy.context.scene.frame_end = frame_end
+
 
 class Render_range_Panel(bpy.types.Panel):
     bl_space_type = 'VIEW_3D'
@@ -57,6 +66,8 @@ class Render_range_Panel(bpy.types.Panel):
         column.operator('range.scene_04')
         column.operator('range.scene_05')
         column.operator('range.scene_06')
+        column.operator('range.07')
+        column.operator('range.08')
 
 class Scene_01_btn(bpy.types.Operator):
     bl_idname = 'range.scene_01'
@@ -125,6 +136,27 @@ class Scene_06_btn(bpy.types.Operator):
    
         return {'FINISHED'}
 
+class Toggle_DDE_armature_btn(bpy.types.Operator):
+    bl_idname = 'range.07'
+    bl_label = 'tgl DDE Amt'
+    bl_description = 'Show/Hide Armature.DDE'
+
+    def execute(self,context):
+        toggle_hide(self, "Armature.DDE")
+
+        return {'FINISHED'}
+
+class Toggle_N_armature_btn(bpy.types.Operator):
+    bl_idname = 'range.08'
+    bl_label = 'tgl N Amt'
+    bl_description = 'Show/Hide Armature.N'
+
+    def execute(self,context):
+        toggle_hide(self, "Armature.N")
+
+        return {'FINISHED'}
+
+
 def register():
     bpy.utils.register_class(Render_range_Panel)
     bpy.utils.register_class(Scene_01_btn)
@@ -133,7 +165,8 @@ def register():
     bpy.utils.register_class(Scene_04_btn)
     bpy.utils.register_class(Scene_05_btn)
     bpy.utils.register_class(Scene_06_btn)
-
+    bpy.utils.register_class(Toggle_DDE_armature_btn)
+    bpy.utils.register_class(Toggle_N_armature_btn)
 
 def unregister():
     bpy.utils.unregister_class(Scene_01_btn)
@@ -142,7 +175,10 @@ def unregister():
     bpy.utils.unregister_class(Scene_04_btn)
     bpy.utils.unregister_class(Scene_05_btn)
     bpy.utils.unregister_class(Scene_06_btn)
+    bpy.utils.unregister_class(Toggle_DDE_armature_btn)
+    bpy.utils.unregister_class(Toggle_N_armature_btn)
     bpy.utils.unregister_class(Render_range_Panel)
+
 
 
 if __name__ == "__main__":
