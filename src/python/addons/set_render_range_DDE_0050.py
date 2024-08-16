@@ -66,8 +66,8 @@ class Render_range_Panel(bpy.types.Panel):
         column.operator('range.scene_04')
         column.operator('range.scene_05')
         column.operator('range.scene_06')
-        column.operator('range.07')
-        column.operator('range.08')
+        column.operator('dde.btn')
+        column.operator('n.btn')
 
 class Scene_01_btn(bpy.types.Operator):
     bl_idname = 'range.scene_01'
@@ -137,7 +137,7 @@ class Scene_06_btn(bpy.types.Operator):
         return {'FINISHED'}
 
 class Toggle_DDE_armature_btn(bpy.types.Operator):
-    bl_idname = 'range.07'
+    bl_idname = 'dde.btn'
     bl_label = 'tgl DDE Amt'
     bl_description = 'Show/Hide Armature.DDE'
 
@@ -147,7 +147,7 @@ class Toggle_DDE_armature_btn(bpy.types.Operator):
         return {'FINISHED'}
 
 class Toggle_N_armature_btn(bpy.types.Operator):
-    bl_idname = 'range.08'
+    bl_idname = 'n.btn'
     bl_label = 'tgl N Amt'
     bl_description = 'Show/Hide Armature.N'
 
