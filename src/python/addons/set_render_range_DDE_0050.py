@@ -38,13 +38,6 @@ bl_info = {
     "category" : "3D View"
 }
 
-def toggle_hide(self, object_name):
-    obj = bpy.data.objects[object_name]
-    if obj.hide_get():
-        obj.hide_set(False)
-    else:
-        obj.hide_set(True)
-
 
 def set_frame_range(self, frame_start, frame_end):
     bpy.context.scene.frame_start = frame_start
@@ -54,130 +47,116 @@ def set_frame_range(self, frame_start, frame_end):
 class Render_range_Panel(bpy.types.Panel):
     bl_space_type = 'VIEW_3D'
     bl_region_type = 'UI'
-    bl_category = 'Render Range'
-    bl_label = 'Select render range'
+    bl_category = 'DDE_0050'
+    bl_label = 'DDE_0050'
     
     def draw(self, context):
         layout = self.layout
         column = layout.column(align=False)
-        column.operator('range.scene_01')
-        column.operator('range.scene_02')
-        column.operator('range.scene_03')
-        column.operator('range.scene_04')
-        column.operator('range.scene_05')
-        column.operator('range.scene_06')
-        column.operator('toggle.dde')
-        column.operator('toggle.n')
 
-class Scene_01_btn(bpy.types.Operator):
-    bl_idname = 'range.scene_01'
-    bl_label = 'scene_01'
-    bl_description = 'scene_01'
+        scene = context.scene
+        column.label(text="Select scene.")
+        # Add PullDown
+        column.prop(scene, "scene_no_enum", text="No")
+        column.operator('set.range')
+
+        column.separator()
+
+        column.label(text="Hide/Show Armatures.")
+        # Add Check Box
+        column.prop(scene, "hide_DDE_Armature_bool", text="Hide DDE Armature")
+        column.prop(scene, "hide_N_Armature_bool", text="Hide N Armature")
+        column.operator('set.hideshow')
+
+
+class Set_Range_btn(bpy.types.Operator):
+    bl_idname = 'set.range'
+    bl_label = 'Set Range'
+    bl_description = 'Set frame range.'
    
    
     def execute(self,context):
-        # 010_Check the dinner menu
-        set_frame_range(self, 400, 962)
-   
+        scene = context.scene
+        if scene.scene_no_enum == "ITEM_1":
+            set_frame_range(self, 400, 962)
+        elif scene.scene_no_enum == "ITEM_2":
+            set_frame_range(self, 1200, 1745)
+        elif scene.scene_no_enum == "ITEM_3":
+            set_frame_range(self, 2000, 2480)
+        elif scene.scene_no_enum == "ITEM_4":
+            set_frame_range(self, 2800, 3821)
+        elif scene.scene_no_enum == "ITEM_5":
+            set_frame_range(self, 4200, 4990)
+        elif scene.scene_no_enum == "ITEM_6":
+            set_frame_range(self, 5300, 6460)
+
         return {'FINISHED'}
 
-class Scene_02_btn(bpy.types.Operator):
-   bl_idname = 'range.scene_02'
-   bl_label = 'scene_02'
-   bl_description = 'scene_02'
-   
-   def execute(self,context):
-        # 020_Connect N
-        set_frame_range(self, 1200, 1745)
-   
-        return {'FINISHED'}
+class Set_HideShow_btn(bpy.types.Operator):
+    bl_idname = 'set.hideshow'
+    bl_label = 'Set Hide/Show'
+    bl_description = 'Set Hide/Show Armature'
 
-class Scene_03_btn(bpy.types.Operator):
-   bl_idname = 'range.scene_03'
-   bl_label = 'scene_03'
-   bl_description = 'scene_03'
-   
-   def execute(self,context):
-        # 030_debugging N
-        set_frame_range(self, 2000, 2480)
-   
-        return {'FINISHED'}
-
-class Scene_04_btn(bpy.types.Operator):
-   bl_idname = 'range.scene_04'
-   bl_label = 'scene_04'
-   bl_description = 'scene_04'
-   
-   def execute(self,context):
-        # 040_N's memory tampering
-        set_frame_range(self, 2800, 3821)
-   
-        return {'FINISHED'}
-
-class Scene_05_btn(bpy.types.Operator):
-   bl_idname = 'range.scene_05'
-   bl_label = 'scene_05'
-   bl_description = 'scene_05'
-   
-   def execute(self,context):
-        # 050_DDE penetrates the kernel
-        set_frame_range(self, 4200, 4990)
-   
-        return {'FINISHED'}
-
-class Scene_06_btn(bpy.types.Operator):
-    bl_idname = 'range.scene_06'
-    bl_label = 'scene_06'
-    bl_description = 'scene_06'
-   
-    def execute(self,context):
-        # 060_N appears
-        set_frame_range(self, 5300, 6460)
-   
-        return {'FINISHED'}
-
-class Toggle_DDE_armature_btn(bpy.types.Operator):
-    bl_idname = 'toggle.dde'
-    bl_label = 'tgl DDE Amt'
-    bl_description = 'Show/Hide Armature.DDE'
 
     def execute(self,context):
-        toggle_hide(self, "Armature.DDE")
+        scene = context.scene
+
+        bpy.data.objects["Armature.DDE"].hide_set(scene.hide_DDE_Armature_bool)
+        bpy.data.objects["Armature.N"].hide_set(scene.hide_N_Armature_bool)
 
         return {'FINISHED'}
 
-class Toggle_N_armature_btn(bpy.types.Operator):
-    bl_idname = 'toggle.n'
-    bl_label = 'tgl N Amt'
-    bl_description = 'Show/Hide Armature.N'
 
-    def execute(self,context):
-        toggle_hide(self, "Armature.N")
+# Initializing properties
+def init_props():
+    scene = bpy.types.Scene
+    scene.scene_no_enum = bpy.props.EnumProperty(
+        name="Scene No.",
+        description="Scene No.(enum)",
+        items=[
+            ('ITEM_1', "scene_01", "Scene 01"),
+            ('ITEM_2', "scene_02", "Scene 02"),
+            ('ITEM_3', "scene_03", "Scene 03"),
+            ('ITEM_4', "scene_04", "Scene 04"),
+            ('ITEM_5', "scene_05", "Scene 05"),
+            ('ITEM_6', "scene_06", "Scene 06")
+        ],
+        default='ITEM_1'
+    )
+    scene.hide_DDE_Armature_bool = bpy.props.BoolProperty(
+        name="Hide DDE Armature",
+        description="Hide DDE Armature(bool)",
+        default=False
+    )
+    scene.hide_N_Armature_bool = bpy.props.BoolProperty(
+        name="Hide N Armature",
+        description="Hide N Armature(bool)",
+        default=False
+    )
 
-        return {'FINISHED'}
+# Delete Property
+def clear_props():
+    scene = bpy.types.Scene
+    del scene.scene_no_enum
+    del scene.hide_DDE_Armature_bool
+    del scene.hide_N_Armature_bool
 
 
 def register():
+    init_props()
     bpy.utils.register_class(Render_range_Panel)
-    bpy.utils.register_class(Scene_01_btn)
-    bpy.utils.register_class(Scene_02_btn)
-    bpy.utils.register_class(Scene_03_btn)
-    bpy.utils.register_class(Scene_04_btn)
-    bpy.utils.register_class(Scene_05_btn)
-    bpy.utils.register_class(Scene_06_btn)
-    bpy.utils.register_class(Toggle_DDE_armature_btn)
-    bpy.utils.register_class(Toggle_N_armature_btn)
+    bpy.utils.register_class(Set_Range_btn)
+    bpy.utils.register_class(Set_HideShow_btn)
+    
+
+
+#    bpy.ops.object.property_example(my_float=47,my_bool=True,my_string="Shouldn't that be 327?",)
 
 def unregister():
-    bpy.utils.unregister_class(Scene_01_btn)
-    bpy.utils.unregister_class(Scene_02_btn)
-    bpy.utils.unregister_class(Scene_03_btn)
-    bpy.utils.unregister_class(Scene_04_btn)
-    bpy.utils.unregister_class(Scene_05_btn)
-    bpy.utils.unregister_class(Scene_06_btn)
-    bpy.utils.unregister_class(Toggle_DDE_armature_btn)
-    bpy.utils.unregister_class(Toggle_N_armature_btn)
+    clear_props()
     bpy.utils.unregister_class(Render_range_Panel)
+    bpy.utils.unregister_class(Set_Range_btn)
+    bpy.utils.unregister_class(Set_HideShow_btn)
 
 
 
