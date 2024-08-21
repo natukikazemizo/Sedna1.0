@@ -94,7 +94,7 @@ class Set_Range_btn(bpy.types.Operator):
 
 class Set_HideShow_btn(bpy.types.Operator):
     bl_idname = 'set.hideshow'
-    bl_label = 'Set Hide/Show'
+    bl_label = 'Hide/Show'
     bl_description = 'Set Hide/Show Armature'
 
 
