@@ -62,10 +62,10 @@ class Render_range_Panel(bpy.types.Panel):
 
         column.separator()
 
-        column.label(text="Hide/Show Armatures.")
+        column.label(text="Show Armatures.")
         # Add Check Box
-        column.prop(scene, "hide_DDE_Armature_bool", text="Hide DDE Armature")
-        column.prop(scene, "hide_N_Armature_bool", text="Hide N Armature")
+        column.prop(scene, "hide_DDE_Armature_bool", text="DDE Armature")
+        column.prop(scene, "hide_N_Armature_bool", text="N Armature")
         column.operator('set.hideshow')
 
 
@@ -94,15 +94,15 @@ class Set_Range_btn(bpy.types.Operator):
 
 class Set_HideShow_btn(bpy.types.Operator):
     bl_idname = 'set.hideshow'
-    bl_label = 'Hide/Show'
-    bl_description = 'Set Hide/Show Armature'
+    bl_label = 'Show'
+    bl_description = 'Set Show cheked Armature & Hide not checked Armature'
 
 
     def execute(self,context):
         scene = context.scene
 
-        bpy.data.objects["Armature.DDE"].hide_set(scene.hide_DDE_Armature_bool)
-        bpy.data.objects["Armature.N"].hide_set(scene.hide_N_Armature_bool)
+        bpy.data.objects["Armature.DDE"].hide_set(not scene.hide_DDE_Armature_bool)
+        bpy.data.objects["Armature.N"].hide_set(not scene.hide_N_Armature_bool)
 
         return {'FINISHED'}
 
