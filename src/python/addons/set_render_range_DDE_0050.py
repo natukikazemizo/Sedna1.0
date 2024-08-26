@@ -42,6 +42,7 @@ bl_info = {
 def set_frame_range(self, frame_start, frame_end):
     bpy.context.scene.frame_start = frame_start
     bpy.context.scene.frame_end = frame_end
+    bpy.context.scene.frame_current = frame_start
 
 
 class Render_range_Panel(bpy.types.Panel):
