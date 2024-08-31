@@ -65,6 +65,7 @@ class Render_range_Panel(bpy.types.Panel):
 
         column.label(text="Show Armatures.")
         # Add Check Box
+        column.prop(scene, "hide_Studio_bool", text="Studio")
         column.prop(scene, "hide_DDE_Armature_bool", text="DDE Armature")
         column.prop(scene, "hide_N_Armature_bool", text="N Armature")
         column.operator('set.hideshow')
@@ -101,7 +102,9 @@ class Set_HideShow_btn(bpy.types.Operator):
 
     def execute(self,context):
         scene = context.scene
-
+        
+        bpy.data.objects["Camera.Main"].hide_set(not scene.hide_Studio_bool)
+        bpy.data.objects["Armature.Studio"].hide_set(not scene.hide_Studio_bool)
         bpy.data.objects["Armature.DDE"].hide_set(not scene.hide_DDE_Armature_bool)
         bpy.data.objects["Armature.N"].hide_set(not scene.hide_N_Armature_bool)
 
@@ -124,6 +127,11 @@ def init_props():
         ],
         default='ITEM_1'
     )
+    scene.hide_Studio_bool = bpy.props.BoolProperty(
+        name="Hide Studio",
+        description="Hide Studio(bool)",
+        default=False
+    )
     scene.hide_DDE_Armature_bool = bpy.props.BoolProperty(
         name="Hide DDE Armature",
         description="Hide DDE Armature(bool)",
@@ -139,6 +147,7 @@ def init_props():
 def clear_props():
     scene = bpy.types.Scene
     del scene.scene_no_enum
+    del scene.hide_Studio_bool
     del scene.hide_DDE_Armature_bool
     del scene.hide_N_Armature_bool
 
