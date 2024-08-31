@@ -56,14 +56,14 @@ class Render_range_Panel(bpy.types.Panel):
         column = layout.column(align=False)
 
         scene = context.scene
-        column.label(text="Select scene.")
+        column.label(text="Select scene")
         # Add PullDown
         column.prop(scene, "scene_no_enum", text="No")
         column.operator('set.range')
 
         column.separator()
 
-        column.label(text="Show Armatures.")
+        column.label(text="Show/Hide Objects")
         # Add Check Box
         column.prop(scene, "hide_Studio_bool", text="Studio")
         column.prop(scene, "hide_DDE_Armature_bool", text="DDE Armature")
