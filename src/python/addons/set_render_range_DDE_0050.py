@@ -19,6 +19,7 @@
 # ##### END GPL LICENSE BLOCK #####
 
 import bpy
+import re
 
 __author__ = "N mizo <https://x.com/natukikazemizo>"
 __status__ = "In Feature Review"
@@ -26,12 +27,12 @@ __version__ = "0.1"
 __date__ = "10 August 2024"
 
 bl_info = {
-    "name" : "Set render Range",
+    "name" : "DDE#0050 Special functions",
     "author" : "N mizo",
     "version" : (0, 1),
     "blender" : (4, 1, 1),
     "location" : "3D View > UI > Render Range",
-    "description" : "Specifying a hard-coded render range per scene.",
+    "description" : "Special functions for DDE#0050",
     "warning" : "",
     "wiki_url" : "",
     "tracker_url" : "",
@@ -50,7 +51,7 @@ class Render_range_Panel(bpy.types.Panel):
     bl_region_type = 'UI'
     bl_category = 'DDE_0050'
     bl_label = 'DDE_0050'
-    
+
     def draw(self, context):
         layout = self.layout
         column = layout.column(align=False)
@@ -58,6 +59,7 @@ class Render_range_Panel(bpy.types.Panel):
         scene = context.scene
         column.label(text="Select scene")
         # Add PullDown
+        # プルダウン表示
         column.prop(scene, "scene_no_enum", text="No")
         column.operator('set.range')
 
@@ -65,18 +67,26 @@ class Render_range_Panel(bpy.types.Panel):
 
         column.label(text="Show/Hide Objects")
         # Add Check Box
+        # チェックボックス表示
         column.prop(scene, "hide_Studio_bool", text="Studio")
         column.prop(scene, "hide_DDE_Armature_bool", text="DDE Armature")
         column.prop(scene, "hide_N_Armature_bool", text="N Armature")
         column.operator('set.hideshow')
 
+        column.separator()
+        column.label(text="Hide Select Hair Line")
+        column.prop(scene, "hide_select_hair_line_bool", text="hide_select")
+        column.operator('set.hairline_hideselect')
+
+        column.separator()
+        column.label(text="Move Hair Bones to Bone Collections")
+        column.operator('set.hairbone_bonecollections')
 
 class Set_Range_btn(bpy.types.Operator):
     bl_idname = 'set.range'
     bl_label = 'Set Range'
     bl_description = 'Set frame range.'
-   
-   
+
     def execute(self,context):
         scene = context.scene
         if scene.scene_no_enum == "ITEM_1":
@@ -111,7 +121,57 @@ class Set_HideShow_btn(bpy.types.Operator):
         return {'FINISHED'}
 
 
+
+class Set_HairLine_HideSelect_btn(bpy.types.Operator):
+    bl_idname = 'set.hairline_hideselect'
+    bl_label = 'Set hide_select'
+    bl_description = 'Set hide_select True/False to Hair Line Bones.'
+
+    def execute(self,context):
+        scene = context.scene
+        pattern='.*Hair.*Line.*'
+        is_hair_line=re.compile(pattern)
+
+        for bone in bpy.data.objects["Armature.DDE"].data.bones:
+            if is_hair_line.match(bone.name):
+                bone.hide_select = scene.hide_select_hair_line_bool
+
+        return {'FINISHED'}
+
+
+class Set_HairBone_BoneCollections_btn(bpy.types.Operator):
+    bl_idname = 'set.hairbone_bonecollections'
+    bl_label = 'Set Bone Collections'
+    bl_description = 'Move Hair bones to appropriate Bone Collections'
+
+    def execute(self,context):
+
+        ptn_hair_ctrl ='.*Hair.*(Line|_T).*'
+        ptn_hair_bone ='^(?!.*Hair.*(Line|_T).*).*Hair.*'
+
+        is_hair_ctrl=re.compile(ptn_hair_ctrl)
+        is_hair_bone=re.compile(ptn_hair_bone)
+
+        collections_all = bpy.data.objects['Armature.DDE'].data.collections_all
+
+        for bone in bpy.data.objects["Armature.DDE"].data.bones:
+            if is_hair_ctrl.match(bone.name):
+                collections_all["All_Ctrls"].assign(bone)
+                collections_all["Ctrl.Hair"].assign(bone)
+                collections_all["All_Bones"].unassign(bone)
+                collections_all["Bones.Hair"].unassign(bone)
+
+            elif is_hair_bone.match(bone.name):
+                collections_all["All_Ctrls"].unassign(bone)
+                collections_all["Ctrl.Hair"].unassign(bone)
+                collections_all["All_Bones"].assign(bone)
+                collections_all["Bones.Hair"].assign(bone)
+
+        return {'FINISHED'}
+
+
 # Initializing properties
+# プロパティ初期化
 def init_props():
     scene = bpy.types.Scene
     scene.scene_no_enum = bpy.props.EnumProperty(
@@ -142,14 +202,22 @@ def init_props():
         description="Hide N Armature(bool)",
         default=False
     )
+    scene.hide_select_hair_line_bool = bpy.props.BoolProperty(
+        name="hide_selecct Hair Line",
+        description="hide_select of Hair Line Bones",
+        default=True
+    )
+
 
 # Delete Property
+# プロパティ削除
 def clear_props():
     scene = bpy.types.Scene
     del scene.scene_no_enum
     del scene.hide_Studio_bool
     del scene.hide_DDE_Armature_bool
     del scene.hide_N_Armature_bool
+    del scene.hide_select_hair_line_bool
 
 
 def register():
@@ -157,16 +225,17 @@ def register():
     bpy.utils.register_class(Render_range_Panel)
     bpy.utils.register_class(Set_Range_btn)
     bpy.utils.register_class(Set_HideShow_btn)
-    
+    bpy.utils.register_class(Set_HairLine_HideSelect_btn)
+    bpy.utils.register_class(Set_HairBone_BoneCollections_btn)
 
-
-#    bpy.ops.object.property_example(my_float=47,my_bool=True,my_string="Shouldn't that be 327?",)
 
 def unregister():
     clear_props()
     bpy.utils.unregister_class(Render_range_Panel)
     bpy.utils.unregister_class(Set_Range_btn)
     bpy.utils.unregister_class(Set_HideShow_btn)
+    bpy.utils.unregister_class(Set_HairLine_HideSelect_btn)
+    bpy.utils.unregister_class(Set_HairBone_BoneCollections_btn)
 
 
 
