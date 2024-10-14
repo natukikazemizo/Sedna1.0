@@ -147,7 +147,7 @@ class Set_HairBone_BoneCollections_btn(bpy.types.Operator):
     def execute(self,context):
 
         ptn_hair_ctrl ='.*Hair.*(Line|_T).*'
-        ptn_hair_bone ='^(?!.*Hair.*(Line|_T).*).*Hair.*'
+        ptn_hair_bone ='^(?!.*Hair.*(Line|_T).*|Hair).*Hair.*'
 
         is_hair_ctrl=re.compile(ptn_hair_ctrl)
         is_hair_bone=re.compile(ptn_hair_bone)
@@ -157,13 +157,13 @@ class Set_HairBone_BoneCollections_btn(bpy.types.Operator):
         for bone in bpy.data.objects["Armature.DDE"].data.bones:
             if is_hair_ctrl.match(bone.name):
                 collections_all["All_Ctrls"].assign(bone)
-                collections_all["Ctrl.Hair"].assign(bone)
+                collections_all["Ctrl.Hair.All"].assign(bone)
                 collections_all["All_Bones"].unassign(bone)
                 collections_all["Bones.Hair"].unassign(bone)
 
             elif is_hair_bone.match(bone.name):
                 collections_all["All_Ctrls"].unassign(bone)
-                collections_all["Ctrl.Hair"].unassign(bone)
+                collections_all["Ctrl.Hair.All"].unassign(bone)
                 collections_all["All_Bones"].assign(bone)
                 collections_all["Bones.Hair"].assign(bone)
 
