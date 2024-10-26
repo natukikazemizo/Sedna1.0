@@ -10,6 +10,16 @@ classDiagram
   class AdditionalFacade {
     +anotherOperation()
   }
+namespace ManySubsystems {
+  class SubsystemA
+  class SubsystemB
+  class SubsystemC
+}
   Client --> Facade
   Facade --> AdditionalFacade
+  Facade ..> SubsystemA
+  Facade ..> SubsystemB
+  AdditionalFacade ..> SubsystemB
+  AdditionalFacade ..> SubsystemC
+ 
  ```
