@@ -11,7 +11,7 @@ classDiagram
         +reset()
         +buildStepA()
         +buildStepB()
-        +buildStepC()
+        +buildStepZ()
     }
 
     class ConcreteBuilder1 {
@@ -19,7 +19,7 @@ classDiagram
         +reset()
         +buildStepA()
         +buildStepB()
-        +buildStepC()
+        +buildStepZ()
         +getResult() Product1
     }
 
@@ -28,7 +28,7 @@ classDiagram
         +reset()
         +buildStepA()
         +buildStepB()
-        +buildStepC()
+        +buildStepZ()
         +getResult() Product2
     }
 
