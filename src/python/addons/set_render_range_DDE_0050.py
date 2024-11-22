@@ -45,6 +45,9 @@ def set_frame_range(self, frame_start, frame_end):
     bpy.context.scene.frame_end = frame_end
     bpy.context.scene.frame_current = frame_start
 
+def hide_object(self, object_name, hide_set):
+    if bpy.data.objects[object_name].visible_get() or not hide_set:
+        bpy.data.objects[object_name].hide_set(hide_set)
 
 class Render_range_Panel(bpy.types.Panel):
     bl_space_type = 'VIEW_3D'
@@ -110,15 +113,18 @@ class Set_HideShow_btn(bpy.types.Operator):
     bl_description = 'Set Show cheked Armature & Hide not checked Armature'
 
 
+
     def execute(self,context):
         scene = context.scene
         
-        bpy.data.objects["Camera.Main"].hide_set(not scene.hide_Studio_bool)
-        bpy.data.objects["Armature.Studio"].hide_set(not scene.hide_Studio_bool)
-        bpy.data.objects["Armature.DDE"].hide_set(not scene.hide_DDE_Armature_bool)
-        bpy.data.objects["Armature.N"].hide_set(not scene.hide_N_Armature_bool)
+        hide_object(self, "Camera.Main", not scene.hide_Studio_bool)
+        hide_object(self, "Armature.Studio", not scene.hide_Studio_bool)
+        hide_object(self, "Armature.DDE", not scene.hide_DDE_Armature_bool)
+        hide_object(self, "Armature.N", not scene.hide_N_Armature_bool)
 
         return {'FINISHED'}
+
+
 
 
 
