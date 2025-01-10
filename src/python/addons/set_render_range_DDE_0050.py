@@ -85,6 +85,11 @@ class Render_range_Panel(bpy.types.Panel):
         column.label(text="Move Hair Bones to Bone Collections")
         column.operator('set.hairbone_bonecollections')
 
+        column.separator()
+        column.label(text="Render")
+        column.prop(scene, "render_start_frame", text="start")
+        column.prop(scene, "render_end_frame", text="end")
+
 class Set_Range_btn(bpy.types.Operator):
     bl_idname = 'set.range'
     bl_label = 'Set Range'
@@ -213,6 +218,16 @@ def init_props():
         description="hide_select of Hair Line Bones",
         default=True
     )
+    scene.render_start_frame = bpy.props.IntProperty(
+        name = "Render Start Frame",
+        description = "The first frame to render.",
+        default = 0
+    )
+    scene.render_end_frame = bpy.props.IntProperty(
+        name = "Render End Frame",
+        description = "The last frame to render.",
+        default = 0
+    )
 
 
 # Delete Property
@@ -224,6 +239,8 @@ def clear_props():
     del scene.hide_DDE_Armature_bool
     del scene.hide_N_Armature_bool
     del scene.hide_select_hair_line_bool
+    del scene.render_start_frame
+    del scene.render_end_frame
 
 
 def register():
