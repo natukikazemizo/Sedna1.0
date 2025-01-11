@@ -89,6 +89,7 @@ class Render_range_Panel(bpy.types.Panel):
         column.label(text="Render")
         column.prop(scene, "render_start_frame", text="start")
         column.prop(scene, "render_end_frame", text="end")
+        column.operator('render.btn')
 
 class Set_Range_btn(bpy.types.Operator):
     bl_idname = 'set.range'
@@ -181,6 +182,17 @@ class Set_HairBone_BoneCollections_btn(bpy.types.Operator):
         return {'FINISHED'}
 
 
+class Render_btn(bpy.types.Operator):
+    bl_idname = 'render.btn'
+    bl_label = 'Render'
+    bl_description = 'Render range'
+
+    def execute(self,context):
+
+
+
+        return {'FINISHED'}
+
 # Initializing properties
 # プロパティ初期化
 def init_props():
@@ -250,7 +262,7 @@ def register():
     bpy.utils.register_class(Set_HideShow_btn)
     bpy.utils.register_class(Set_HairLine_HideSelect_btn)
     bpy.utils.register_class(Set_HairBone_BoneCollections_btn)
-
+    bpy.utils.register_class(Render_btn)
 
 def unregister():
     clear_props()
@@ -259,7 +271,7 @@ def unregister():
     bpy.utils.unregister_class(Set_HideShow_btn)
     bpy.utils.unregister_class(Set_HairLine_HideSelect_btn)
     bpy.utils.unregister_class(Set_HairBone_BoneCollections_btn)
-
+    bpy.utils.unregister_class(Render_btn)
 
 
 if __name__ == "__main__":
