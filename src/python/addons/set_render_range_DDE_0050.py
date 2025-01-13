@@ -39,6 +39,40 @@ bl_info = {
     "category" : "3D View"
 }
 
+scene_marker_list = [
+    "010_Check the dinner menu",
+    "020_Connect N",
+    "030_debugging N",
+    "040_N's memory tampering",
+    "050_DDE penetrates the kernel",
+    "060_N appears"
+]
+
+SCENE_END_MARKER_PREFIX = "END_"
+
+
+
+def create_scene_frame_range():
+    scene_frame_range = []
+
+    # bpy.context.scene には、アドオン登録時にはアクセスできません。
+    # アドオン登録後の、アドオン操作時はbpy.context.sceneにアクセスできます。
+    for scene_marker in scene_marker_list:
+        if scene_marker not in bpy.context.scene.timeline_markers:
+            print("INFO: start marker not found:" + scene_marker)
+            return scene_frame_range
+        scene_end_marker = SCENE_END_MARKER_PREFIX + scene_marker
+        if scene_end_marker not in bpy.context.scene.timeline_markers:
+            print("INFO: end marker not found:" + scene_end_marker)
+            return scene_frame_range
+
+        frame_start = bpy.context.scene.timeline_markers[scene_marker].frame
+        frame_end = bpy.context.scene.timeline_markers[scene_end_marker].frame
+        scene_frame_range.append((frame_start, frame_end))
+
+    return scene_frame_range
+
+
 
 def set_frame_range(self, frame_start, frame_end):
     bpy.context.scene.frame_start = frame_start
@@ -188,15 +222,38 @@ class Render_btn(bpy.types.Operator):
     bl_description = 'Render range'
 
     def execute(self,context):
+        scene_frame_range = create_scene_frame_range()
+        scene = context.scene
+        if scene.render_end_frame < scene.render_start_frame:
+            scene.render_end_frame = scene.render_start_frame
 
-
+        print(scene.render_start_frame)
+        print(scene.render_end_frame)
+        for range in scene_frame_range:
+            # シーンと指定された範囲が重なる場合
+            if range[0] <= scene.render_end_frame and \
+                scene.render_start_frame <= range[1]:
+                range_start = max([range[0], scene.render_start_frame])
+                range_end = min([range[1], scene.render_end_frame])
+                set_frame_range(self, range_start, range_end)
+                print("#### Render Start  #### frame:" + str(range_start) + \
+                    "-" +str(range_end))
+                bpy.ops.render.render(animation=True)
+                print("#### Render End    #### frame:" + str(range_start) + \
+                    "-" +str(range_end))
 
         return {'FINISHED'}
 
 # Initializing properties
 # プロパティ初期化
 def init_props():
+
+
+
     scene = bpy.types.Scene
+
+
+
     scene.scene_no_enum = bpy.props.EnumProperty(
         name="Scene No.",
         description="Scene No.(enum)",
