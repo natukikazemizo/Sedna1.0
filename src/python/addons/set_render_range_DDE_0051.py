@@ -24,15 +24,15 @@ import re
 __author__ = "N mizo <https://x.com/natukikazemizo>"
 __status__ = "In Feature Review"
 __version__ = "0.1"
-__date__ = "10 August 2024"
+__date__ = "28 February 2025"
 
 bl_info = {
-    "name" : "DDE#0050 Special functions",
+    "name" : "DDE#0051 Special functions",
     "author" : "N mizo",
     "version" : (0, 1),
-    "blender" : (4, 1, 1),
+    "blender" : (4, 3, 2),
     "location" : "3D View > UI > Render Range",
-    "description" : "Special functions for DDE#0050",
+    "description" : "Special functions for DDE#0051",
     "warning" : "",
     "wiki_url" : "",
     "tracker_url" : "",
@@ -86,8 +86,8 @@ def hide_object(self, object_name, hide_set):
 class Render_range_Panel(bpy.types.Panel):
     bl_space_type = 'VIEW_3D'
     bl_region_type = 'UI'
-    bl_category = 'DDE_0050'
-    bl_label = 'DDE_0050'
+    bl_category = 'DDE_0051'
+    bl_label = 'DDE_0051'
 
     def draw(self, context):
         layout = self.layout
