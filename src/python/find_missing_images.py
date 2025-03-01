@@ -33,7 +33,7 @@ def find_missing_images():
                     img = node.image
                     # If the file path does not exist or cannot be found
                     # ファイルパスが存在しない、または見つからない場合
-                    if img.filepath and (not bpy.path.abspath(img.filepath) or not bpy.data.images[img.name].has_data):
+                    if img.filepath and (not bpy.path.abspath(img.filepath)):
                         if img.filepath not in missing_images:
                             missing_images.append(img.filepath)
     
