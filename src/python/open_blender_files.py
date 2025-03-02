@@ -15,7 +15,8 @@ import codecs
 import datetime
 import os
 
-TARGET_DIRECTORY = 'D:\\Blender\\trunk\\Sedna'
+TARGET_DIRECTORY = 'D:\\Blender\\trunk\\SednaSedna\\Animation\\Effects\\28Mansions'
+OUTPUT_FILE = 'D:\\Blender\\trunk\\Sedna\\tmp\\result.txt'
 
 def print_and_fo(f_out, text):
     print(text)
@@ -24,7 +25,7 @@ def print_and_fo(f_out, text):
     
 
 def open_blend_files(directory):
-    f_out = codecs.open("D:\\Blender\\trunk\\Sedna\\tmp\\result.txt", 'a', 'utf-8')
+    f_out = codecs.open(OUTPUT_FILE, 'a', 'utf-8')
     print_and_fo(f_out, str(datetime.datetime.now()) + " ### START ###")
 
     # Search the specified directory and subfolders recursively
@@ -54,8 +55,8 @@ def open_blend_files(directory):
                 print_and_fo(f_out, "Closed: {full_path}")
                 print_and_fo(f_out, f"閉じました: {full_path}")
 
-    f_out.close()
     print_and_fo(f_out, str(datetime.datetime.now()) + " :### END #####")
+    f_out.close()
 
 
 # Run script
