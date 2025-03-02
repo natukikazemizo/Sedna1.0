@@ -52,7 +52,7 @@ def open_blend_files(directory):
                 # Close the file (returning to a new empty scene)
                 # ファイルを閉じる（新しい空のシーンに戻す）
                 bpy.ops.wm.read_factory_settings(use_empty=True)
-                print_and_fo(f_out, "Closed: {full_path}")
+                print_and_fo(f_out, f"Closed: {full_path}")
                 print_and_fo(f_out, f"閉じました: {full_path}")
 
     print_and_fo(f_out, str(datetime.datetime.now()) + " :### END #####")
