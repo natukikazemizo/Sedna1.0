@@ -15,7 +15,7 @@ import codecs
 import datetime
 import os
 
-TARGET_DIRECTORY = 'D:\\Blender\\trunk\\SednaSedna\\Animation\\Effects\\28Mansions'
+TARGET_DIRECTORY = 'D:\\Blender\\trunk\\Sedna\\Animation\\Assets'
 OUTPUT_FILE = 'D:\\Blender\\trunk\\Sedna\\tmp\\link_broken_images.txt'
 
 
@@ -25,7 +25,7 @@ def print_and_fo(f_out, text):
 
 
 def find_missing_images():
-    print(str(datetime.datetime.now()) + " ### START ###")
+    print(str(datetime.datetime.now()) + " ### Check image START ###")
 
     # A list to store the missing image paths
     # 見つからない画像パスを格納するリスト
@@ -36,7 +36,7 @@ def find_missing_images():
     for img in bpy.data.images:
         # If the file path does not exist or cannot be found
         # ファイルパスが存在しない、または見つからない場合
-        if img.filepath and (not os.path.isfile(img.filepath)):
+        if img.filepath and (not os.path.isfile(img.filepath) and not os.path.isfile(os.path.abspath(img.filepath))):
             if img.filepath not in missing_images:
                 missing_images.append(img.filepath)
 
@@ -50,11 +50,11 @@ def find_missing_images():
     else:
         print("There were no link broken images.")
         print("リンク切れ画像はありませんでした。")
-    print(str(datetime.datetime.now()) + " :### END #####")
+    print(str(datetime.datetime.now()) + " :### Check image END #####")
 
 def open_blend_files(directory):
     f_out = codecs.open(OUTPUT_FILE, 'a', 'utf-8')
-    print_and_fo(f_out, str(datetime.datetime.now()) + " ### START ###")
+    print_and_fo(f_out, str(datetime.datetime.now()) + " ### Open files START ###")
 
     # Search the specified directory and subfolders recursively
     # 指定したディレクトリとサブフォルダを再帰的に探索
@@ -85,7 +85,7 @@ def open_blend_files(directory):
                 print_and_fo(f_out, "Closed: {full_path}")
                 print_and_fo(f_out, f"閉じました: {full_path}")
 
-    print_and_fo(f_out, str(datetime.datetime.now()) + " :### END #####")
+    print_and_fo(f_out, str(datetime.datetime.now()) + " :### Open files END #####")
     f_out.close()
 
 
