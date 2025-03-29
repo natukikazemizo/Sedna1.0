@@ -12,8 +12,30 @@ import sys
 # custom_shape 格納用 .blendファイル名
 CUSTOM_SHAPES_BLEND = 'CtrlPic.blend'
 
+# Collection name for storing custom_shape
+# custom_shape 格納用 Collection名
+CUSTOM_SHAPES_COLLECTION = 'CtrlPic'
+
+
+def set_linked_custom_shape(self, pose_bone):
+    """
+    Parameters
+    ----------
+    pose_bone : bpy_struct
+        PoseBone to replace custom shape<br>
+        Custom shape を置換する Pose Bone
+    """
+    if pose_bone.custom_shape.name not in \
+        bpy.data.collections[CUSTOM_SHAPES_COLLECTION].objects:
+        print ("custom shape: {pose_bone.custom_shape.name} "\
+                "not in Linked CtrlPic Collection library")
+        return
+    pose_bone.custom_shape = bpy.data.collections[CUSTOM_SHAPES_COLLECTION].objects[pose_bone.name]
+    print(f"bone '{pose_bone.name}' custom shape: '{pose_bone.custom_shape.name}' fixed to linked object")
+
 
 print('######## START ########')
+
 
 if bpy.data.libraries[CUSTOM_SHAPES_BLEND]:
     for obj in bpy.data.objects:
@@ -27,7 +49,7 @@ if bpy.data.libraries[CUSTOM_SHAPES_BLEND]:
                     if pose_bone.custom_shape:
                         if not pose_bone.custom_shape.library:
                             print(f"Bone '{bone.name}' " \
-                                "custom shape: {pose_bone.custom_shape.name} "\
+                                "custom shape: '{pose_bone.custom_shape.name}' "\
                                     "without library")
 else:
     print('The .blend file containing custom_shape is not linked.')
@@ -35,24 +57,4 @@ else:
 
 print('########  END  ########')
 
-
-## プロンプトで実験結果
-
-# >>> bpy.data.objects["CtrlPic.Rot"].data.library
-# bpy.data.libraries['CtrlPic.blend']
-
-# >>> bpy.data.objects["CtrlPic.Rot"].library
-# bpy.data.libraries['CtrlPic.blend']
-
-# >>> bpy.data.objects["Object_T"].library
-# >>> bpy.data.objects["Object_T"].data.library
-# Traceback (most recent call last):
-#   File "<blender_console>", line 1, in <module>
-# AttributeError: 'NoneType' object has no attribute 'library'
-
-# >>> bpy.data.objects["Object_T"].data
-# >>> bpy.data.objects["Object_T"].data.library
-# Traceback (most recent call last):
-#   File "<blender_console>", line 1, in <module>
-# AttributeError: 'NoneType' object has no attribute 'library'
 
