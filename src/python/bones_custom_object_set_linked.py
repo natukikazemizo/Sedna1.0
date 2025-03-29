@@ -3,27 +3,37 @@
 # Change bone's cutom object to linked object
 # ボーンのカスタムオブジェクトをリンクされたオブジェクトに変更する
 #
-# 2025.03.27 Natukikazemizo 作成途中で放置
+# 2025.03.29 Nミゾ(Natukikazemizo) アイデアが思いついたので、作成
 
 import bpy
+import sys
 
-# アクティブなオブジェクトがアーマチュアであることを確認
-obj = bpy.context.active_object
-if obj and obj.type == 'ARMATURE':
-    armature = obj.data
-    
-    # ポーズモードのボーンをチェック
-    for bone in armature.bones:
-        # 対応するポーズボーンを取得
-        pose_bone = obj.pose.bones.get(bone.name)
-        if pose_bone:
-            # カスタムシェイプが設定されているか確認
-            if pose_bone.custom_shape:
-                print(f"ボーン '{bone.name}' にカスタムシェイプが設定されています: {pose_bone.custom_shape.name}")
-            else:
-                print(f"ボーン '{bone.name}' にカスタムシェイプは設定されていません")
+# .blend file name for storing custom_shape
+# custom_shape 格納用 .blendファイル名
+CUSTOM_SHAPES_BLEND = 'CtrlPic.blend'
+
+
+print('######## START ########')
+
+if bpy.data.libraries[CUSTOM_SHAPES_BLEND]:
+    for obj in bpy.data.objects:
+        if obj and obj.type == 'ARMATURE':
+            print('Check Armature:' + obj.name)
+            
+            for bone in obj.data.bones:
+                # Get pose bone
+                pose_bone = obj.pose.bones.get(bone.name)
+                if pose_bone:
+                    if pose_bone.custom_shape:
+                        if not pose_bone.custom_shape.library:
+                            print(f"Bone '{bone.name}' " \
+                                "custom shape: {pose_bone.custom_shape.name} "\
+                                    "without library")
 else:
-    print("アクティブなオブジェクトがアーマチュアではありません")
+    print('The .blend file containing custom_shape is not linked.')
+    print('custom_shape 格納用 .blendファイル がリンクされていません。')
+
+print('########  END  ########')
 
 
 ## プロンプトで実験結果
