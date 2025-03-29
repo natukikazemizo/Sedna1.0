@@ -17,7 +17,7 @@ CUSTOM_SHAPES_BLEND = 'CtrlPic.blend'
 CUSTOM_SHAPES_COLLECTION = 'CtrlPic'
 
 
-def set_linked_custom_shape(self, pose_bone):
+def set_linked_custom_shape(pose_bone):
     """
     Parameters
     ----------
@@ -30,8 +30,10 @@ def set_linked_custom_shape(self, pose_bone):
         print ("custom shape: {pose_bone.custom_shape.name} "\
                 "not in Linked CtrlPic Collection library")
         return
-    pose_bone.custom_shape = bpy.data.collections[CUSTOM_SHAPES_COLLECTION].objects[pose_bone.name]
-    print(f"bone '{pose_bone.name}' custom shape: '{pose_bone.custom_shape.name}' fixed to linked object")
+    pose_bone.custom_shape = bpy.data.collections[CUSTOM_SHAPES_COLLECTION].\
+        objects[pose_bone.custom_shape.name]
+    print(f"bone '{pose_bone.name}' custom shape: '{pose_bone.custom_shape.name}'"\
+           "fixed to linked object")
 
 
 print('######## START ########')
@@ -51,6 +53,7 @@ if bpy.data.libraries[CUSTOM_SHAPES_BLEND]:
                             print(f"Bone '{bone.name}' " \
                                 "custom shape: '{pose_bone.custom_shape.name}' "\
                                     "without library")
+                            set_linked_custom_shape(pose_bone)
 else:
     print('The .blend file containing custom_shape is not linked.')
     print('custom_shape 格納用 .blendファイル がリンクされていません。')
