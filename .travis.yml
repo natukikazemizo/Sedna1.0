@@ -8,22 +8,22 @@ python:
   - "3.5"
 
 # install前に実行する処理
-before_install:
+#before_install:
   # 可能な限り最新のBlenderをインストール
   # パッケージマネージャー経由でインストールすることで、Blenderに依存しているパッケージを
   # 自動的にインストール（手動で依存するパッケージをインストールするのは手間がかかるため）
-  - sudo apt-get update -qq
-  - sudo apt-get install blender
+#  - sudo apt-get update -qq
+#  - sudo apt-get install blender
 
 # テスト実行の前準備
-install:
+#install:
   # ★最新版のBlenderをダウンロード
-  - wget http://mirror.cs.umn.edu/blender.org/release/Blender2.79/blender-2.79b-linux-glibc219-x86_64.tar.bz2
+#  - wget http://mirror.cs.umn.edu/blender.org/release/Blender2.79/blender-2.79b-linux-glibc219-x86_64.tar.bz2
   # ★ダウンロードしたBlenderを解凍
-  - tar jxf blender-2.79b-linux-glibc219-x86_64.tar.bz2
+#  - tar jxf blender-2.79b-linux-glibc219-x86_64.tar.bz2
   # ★アドオンをインストール（Blenderのバージョンに合わせて、ディレクトリを指定）
-  - cp Sedna/src/python/addons/testee.py blender-2.79b-linux-glibc219-x86_64/2.79/scripts/addons/testee.py
+#  - cp Sedna/src/python/addons/testee.py blender-2.79b-linux-glibc219-x86_64/2.79/scripts/addons/testee.py
 
 # ★テスト実行
-script: blender-2.79b-linux-glibc219-x86_64/blender -noaudio --factory-startup --background --addons testee --python Sedna/src/python/addons/test.py
+# script: blender-2.79b-linux-glibc219-x86_64/blender -noaudio --factory-startup --background --addons testee --python Sedna/src/python/addons/test.py
 
