@@ -1,6 +1,4 @@
-package java.study.class_diagram.connector.simple_line;
-
-import java.study.class_diagram.connector.simple_line.Hand;
+package java.study.class_diagram.connector.association;
 
 /**
  * 腕
@@ -9,4 +7,6 @@ import java.study.class_diagram.connector.simple_line.Hand;
  */
 public class Arm {
     private Hand hand;
+
+    public void bend() {}
 }

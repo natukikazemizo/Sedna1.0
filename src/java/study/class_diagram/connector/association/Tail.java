@@ -1,4 +1,4 @@
-package java.study.class_diagram.connector.simple_line;
+package java.study.class_diagram.connector.association;
 
 /**
  * 尻尾
@@ -6,4 +6,5 @@ package java.study.class_diagram.connector.simple_line;
  * 
  */
 public class Tail {
+    public void wave(){};
 }

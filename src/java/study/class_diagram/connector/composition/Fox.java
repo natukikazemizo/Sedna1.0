@@ -1,4 +1,5 @@
-package java.study.class_diagram.connector.association;
+package java.study.class_diagram.connector.composition;
+
 
 /**
  * キツネ
@@ -7,14 +8,12 @@ package java.study.class_diagram.connector.association;
  */
 public class Fox {
     private Tail tail;
-    private Arm arm;
 
-    public Fox() {
-
+    public Fox(Tail tail) {
+        this.tail = tail;
     }
 
     public void run(){
-        arm.bend();
         tail.wave();
     }
 }
