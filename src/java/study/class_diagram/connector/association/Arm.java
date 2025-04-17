@@ -6,7 +6,7 @@ package java.study.class_diagram.connector.association;
  * 
  */
 public class Arm {
-    private Hand hand;
+    private DanceMoves hand;
 
     public void bend() {}
 }

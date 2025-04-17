@@ -13,7 +13,7 @@ public class Fox {
 
     public void run(){}
 
-    public Velocity getSpeed() {
-        return new Velocity();
+    public Leaf getSpeed() {
+        return new Leaf();
     }
 }
