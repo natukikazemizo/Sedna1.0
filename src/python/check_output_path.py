@@ -13,6 +13,8 @@ import bpy
 import codecs
 import datetime
 import os
+import pathlib
+
 
 TARGET_DIRECTORY = 'D:\\Blender\\trunk\\Sedna\\Animation'
 OUTPUT_FILE = 'D:\\Blender\\trunk\\Sedna\\tmp\\output_folder_result.txt'
@@ -42,6 +44,11 @@ def open_blend_files(directory):
                 bpy.ops.wm.open_mainfile(filepath=full_path)
 
                 output_path = bpy.context.scene.render.filepath
+                output_path = str(pathlib.Path(output_path).resolve())
+
+                # * If the destination folder does not exist,
+                #   the path will remain relative.
+                # ※出力先フォルダが存在しない場合、相対パスのままになります。
                 print_and_fo(f_out, full_path + f": " + output_path)
                 
                 # Close the file (returning to a new empty scene)
