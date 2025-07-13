@@ -58,10 +58,9 @@ This software is released under the MIT License, see License.txt.
 
 ## 制限事項
 ### Blenderの機能について
-* BlenderのFreeStyleサポートが終了する可能性があります [^1][^2]  
-[^1]: [Xでの @3D_director 氏の投稿](https://twitter.com/3D_director/status/1944112880137183656)  
-[^2]:
-<details>
+* BlenderのFreeStyleサポートが終了する可能性があります [^1]
+[^1]: [Xでの @3D_director 氏の投稿](https://twitter.com/3D_director/status/1944112880137183656)
+  <details>
 <summary>@3D_director氏の投稿の、チャット画像の英文と、日本語訳</summary>
 Pierre
 'Hi. Since Blender 5 is doing progress with compositor (compositions as nodes data to be imported into another composition), I wanted to ask if FREESTYLE lines could have such behavior also? Currently importing Freestyle lines is not possible in Blender. One has to append the entire file, but it is not possible to just import the style of the lines.'
