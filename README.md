@@ -56,5 +56,38 @@ This software is released under the MIT License, see License.txt.
 * [ドロシーの開発環境](https://docs.google.com/spreadsheets/d/1JOwA04ETPTs7nhXe5xuTIlnVsEsFJ_BYAcRnFypRfk4/edit?usp=sharing)
 * [キャラクター　設定書](https://docs.google.com/document/d/1RVfo4jyTuvJRAn-cnjJM7ZJmLkL8JQns7_gMxWAObdg/edit?usp=sharing)
 
+## 制限事項
+### Blenderの機能について
+* BlenderのFreeStyleサポートが終了する可能性があります [^1][^2]  
+[^1]: [Xでの @3D_director 氏の投稿](https://twitter.com/3D_director/status/1944112880137183656)  
+[^2]:
+<details>
+<summary>@3D_director氏の投稿の、チャット画像の英文と、日本語訳</summary>
+Pierre
+'Hi. Since Blender 5 is doing progress with compositor (compositions as nodes data to be imported into another composition), I wanted to ask if FREESTYLE lines could have such behavior also? Currently importing Freestyle lines is not possible in Blender. One has to append the entire file, but it is not possible to just import the style of the lines.'
+
+Falk David
+'Freestyle is end-of-life so there won't be any new features for it unfortunately'
+
+Pierre
+'Blender 5.0 is "end of life for Freestyle"?'
+
+LazyDodo
+'5.0 doesn't change anything about it afaik, freestyle hasn't had a maintainer for years, but no active plans to remove it just yet'
+
+
+ピエール
+『こんにちは。Blender 5ではコンポジター（ノードデータとしてコンポジションを別のコンポジションにインポートする機能）が進化しているので、FREESTYLEのラインにも同様の挙動が可能かどうかお聞きしたいのですが。現在、BlenderではFreestyleのラインをインポートできません。ファイル全体を追加する必要がありますが、ラインのスタイルだけをインポートすることはできません』
+
+ファルク・デイビッド
+『Freestyleはサポート終了のため、残念ながら新しい機能は追加されません』
+
+ピエール
+『Blender 5.0で「Freestyleのサポート終了」ですか？』
+
+レイジー・ドードー（のんびりドードー）
+『5.0では何も変更されません。Freestyleには何年もメンテナーがいませんが、今のところ削除する予定はありません』
+</details>
+
 ## その他詳細情報
 [こちらのwikiを参照してください](../../wiki/Home)
