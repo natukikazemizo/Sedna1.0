@@ -162,6 +162,9 @@ class Set_HideShow_btn(bpy.types.Operator):
         hide_object(self, "Armature.DDE", not scene.hide_DDE_Armature_bool)
         hide_object(self, "Armature.N", not scene.hide_N_Armature_bool)
 
+        # ついでにモードも変更
+        bpy.ops.object.mode_set(mode='POSE')
+
         return {'FINISHED'}
 
 
