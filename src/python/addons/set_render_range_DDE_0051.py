@@ -49,7 +49,7 @@ scene_marker_list = [
 ]
 
 SCENE_END_MARKER_PREFIX = "END_"
-
+"""シーンの終わりのマーカーの前置詞"""
 
 
 def create_scene_frame_range():
