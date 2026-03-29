@@ -47,14 +47,20 @@ DDE#0060 安心　Peace of mind
 
 # 脚本
 ## 方針
-* 
+* 明るく
+* のんびりした感じ
+
 
 ## シナリオ案
 * 
 
-# 安心関連概念メモ
-
-# 不安関連概念メモ
+# 安心と不安の関連概念メモ
+* 信頼／裏切り
+* 平和／戦争
+* 健康／病気
+* 平穏／擾乱
+* 幼いころの記憶／明日への不信
+* ぬくもり／冷たさ
 
 
 ### キービジュアル
@@ -132,4 +138,8 @@ https://www.hurtrecord.com/
 * ツール  
   * Polacode  
 	Version:0.3.4  
-	Publisher:P & P  
+	Publisher:P & P
+  * VCS
+    * GitHub
+	* Sourcetree
+	
