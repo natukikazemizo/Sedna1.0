@@ -36,3 +36,4 @@ Sedna/data/FolderList.txt
 *.py#
 src/headfirst
 sounds/clap.wav
+*.log
