@@ -37,3 +37,4 @@ Sedna/data/FolderList.txt
 src/headfirst
 sounds/clap.wav
 *.log
+src/python/study/db/sqllite3/data/test.db
