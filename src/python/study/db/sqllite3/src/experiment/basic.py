@@ -1,6 +1,7 @@
 import sqlite3
 import os
 import logging
+from config import path_settings
 
 logger = logging.getLogger(__name__)
 
@@ -9,7 +10,7 @@ logger = logging.getLogger(__name__)
 # ========================
 # 設定
 # ========================
-DB_NAME = "test_database.db"
+DB_NAME = path_settings.TEST_DB_DIR
 TABLE_NAME = "users"
 
 
