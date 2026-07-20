@@ -22,8 +22,17 @@ def test_customer_repository():
     db = DatabaseConnection(DB_NAME)
 
     customer_repo = CustomerRepository(db)
+
+    customer_code = "0001"
+
+    # 既存データ有無チェック
+    row = customer_repo.get_by_code(customer_code)
+    if (row is not None):
+        # 既存データがあったら削除
+        customer_repo.remove(customer_code)
+
     row_data = {
-        "customer_code": "0001",
+        "customer_code": customer_code,
         "name": "DDE",
         "email": "DDE@asteroid.sp",
         "phone": "090131314"
