@@ -23,16 +23,16 @@ import re
 
 __author__ = "N mizo <https://x.com/natukikazemizo>"
 __status__ = "In Feature Review"
-__version__ = "0.1"
-__date__ = "28 February 2025"
+__version__ = "0.0"
+__date__ = "19 September 2026"
 
 bl_info = {
     "name" : "DDE Test Room Special functions",
     "author" : "N mizo",
-    "version" : (0, 1),
-    "blender" : (4, 4, 0),
+    "version" : (0, 0),
+    "blender" : (5, 2, 2),
     "location" : "3D View > UI > Render Range",
-    "description" : "Special functions for DDE#0051",
+    "description" : "Special functions for DDE#Test Room",
     "warning" : "",
     "wiki_url" : "",
     "tracker_url" : "",
@@ -86,8 +86,8 @@ def hide_object(self, object_name, hide_set):
 class Render_range_Panel(bpy.types.Panel):
     bl_space_type = 'VIEW_3D'
     bl_region_type = 'UI'
-    bl_category = 'DDE_0051'
-    bl_label = 'DDE_0051'
+    bl_category = 'DDE_Test'
+    bl_label = 'DDE_Test'
 
     def draw(self, context):
         layout = self.layout
@@ -317,21 +317,21 @@ def clear_props():
 
 def register():
     init_props()
-#    bpy.utils.register_class(Render_range_Panel)
-#    bpy.utils.register_class(Set_Range_btn)
+    bpy.utils.register_class(Render_range_Panel)
+    bpy.utils.register_class(Set_Range_btn)
     bpy.utils.register_class(Set_HideShow_btn)
     bpy.utils.register_class(Set_HairLine_HideSelect_btn)
     bpy.utils.register_class(Set_HairBone_BoneCollections_btn)
-#    bpy.utils.register_class(Render_btn)
+    bpy.utils.register_class(Render_btn)
 
 def unregister():
     clear_props()
-#    bpy.utils.unregister_class(Render_range_Panel)
-#    bpy.utils.unregister_class(Set_Range_btn)
+    bpy.utils.unregister_class(Render_range_Panel)
+    bpy.utils.unregister_class(Set_Range_btn)
     bpy.utils.unregister_class(Set_HideShow_btn)
     bpy.utils.unregister_class(Set_HairLine_HideSelect_btn)
     bpy.utils.unregister_class(Set_HairBone_BoneCollections_btn)
-#    bpy.utils.unregister_class(Render_btn)
+    bpy.utils.unregister_class(Render_btn)
 
 
 if __name__ == "__main__":
